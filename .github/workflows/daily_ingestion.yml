@@ -1,0 +1,35 @@
+name: Daily Ingestion - Port de Barcelona
+
+on:
+  schedule:
+    - cron: '0 7 * * *'    # 07:00 UTC = 09:00 hora Barcelona
+  workflow_dispatch:         # permite lanzarlo manualmente desde GitHub
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'               # cachea dependencias para ejecuciones más rápidas
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run ingestion
+        working-directory: ingestion
+        run: python3 run_ingestion.py
+        env:
+          SNOWFLAKE_ACCOUNT:    ${{ secrets.SNOWFLAKE_ACCOUNT }}
+          SNOWFLAKE_USER:       ${{ secrets.SNOWFLAKE_USER }}
+          SNOWFLAKE_PASSWORD:   ${{ secrets.SNOWFLAKE_PASSWORD }}
+          SNOWFLAKE_DATABASE:   PORTFOLIO_DB
+          SNOWFLAKE_SCHEMA:     RAW_LAYER
+          SNOWFLAKE_WAREHOUSE:  WH_INGESTION
+          SNOWFLAKE_ROLE:       SYSADMIN
