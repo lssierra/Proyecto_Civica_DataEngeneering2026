@@ -1,7 +1,7 @@
 import os
 import logging
 from dotenv import load_dotenv
-from config import SOURCES
+from ingestion.daily_config import SOURCES
 from downloader import download_csv
 from loader import get_connection, load_dataframe
 
