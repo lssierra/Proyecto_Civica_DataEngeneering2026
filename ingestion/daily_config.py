@@ -49,7 +49,7 @@ SOURCES = {
 
     "port_bcn_arrivals_cruises_and_ferrys_today": {
         "url": "https://opendata.portdebarcelona.cat/dataset/0a5f703d-35e5-4262-84ac-b6930239f4aa/resource/9c803939-6ea4-4095-aa82-11127538154a/download/portbcncreuers.csv",
-        "target_table": "PORT_BCN_ARRIVALS_CRUISES_AND_FERRYS_TODAY",
+        "target_table": "PORT_BCN_ARRIVALS_CRUISES_AND_FERRYS_TODAY_RAW",
         "stage_prefix": "port_bcn_arrivals_cruises_and_ferrys_today",
         "encoding": "utf-8-sig",
         "separator": ",",
