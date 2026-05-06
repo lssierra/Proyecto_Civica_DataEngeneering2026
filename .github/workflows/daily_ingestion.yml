@@ -2,7 +2,7 @@ name: Daily Ingestion - Port de Barcelona
 
 on:
   schedule:
-    - cron: '0 7 * * *'    # 07:00 UTC = 09:00 hora Barcelona
+    - cron: '0 7 * * *'   # 07:00 UTC = 09:00 hora Barcelona
   workflow_dispatch:         # permite lanzarlo manualmente desde GitHub
 
 jobs:
@@ -24,7 +24,7 @@ jobs:
 
       - name: Run ingestion
         working-directory: ingestion
-        run: python3 run_ingestion.py
+        run: python3 run_daily_ingestion.py
         env:
           SNOWFLAKE_ACCOUNT:    ${{ secrets.SNOWFLAKE_ACCOUNT }}
           SNOWFLAKE_USER:       ${{ secrets.SNOWFLAKE_USER }}
