@@ -1,0 +1,34 @@
+# dbt run-operation generate_model_yaml --args '{"model_names": [""stg_master_files__MASTER_FILES_COUNTRIES", "stg_master_files__MASTER_FILES_DOCKS", "stg_master_files__MASTER_FILES_FORELAND_AREAS", "stg_master_files__MASTER_FILES_GEO_AREAS", "stg_master_files__MASTER_FILES_LOCODES", "stg_master_files__MASTER_FILES_PORT_BCN_LOCATIONS", "stg_master_files__MASTER_FILES_PORTS", "stg_master_files__MASTER_FILES_SHIP_OPERATORS", "stg_master_files__MASTER_FILES_SHIP_TYPES", "stg_master_files__MASTER_FILES_SUBFORELAND_AREAS"]}'
+version: 2
+
+models:
+  - name: stg_master_files__master_files_countries
+    description: ""
+    
+  - name: stg_master_files__master_files_docks
+    description: ""
+    
+  - name: stg_master_files__master_files_foreland_areas
+    description: ""
+    
+  - name: stg_master_files__master_files_geo_areas
+    description: ""
+    
+  - name: stg_master_files__master_files_locodes
+    description: ""
+    
+  - name: stg_master_files__master_files_port_bcn_locations
+    description: ""
+    
+  - name: stg_master_files__master_files_ports
+    description: ""
+    
+  - name: stg_master_files__master_files_ship_operators
+    description: ""
+    
+  - name: stg_master_files__master_files_ship_types
+    description: ""
+    
+  - name: stg_master_files__master_files_subforeland_areas
+    description: ""
+    

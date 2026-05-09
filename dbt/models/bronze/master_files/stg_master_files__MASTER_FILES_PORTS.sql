@@ -9,14 +9,14 @@ source as (
 renamed as (
 
     select
-        unlocode,
-        nomlocalitat,
-        isopais,
-        nompais,
-        aregeografica,
-        nomareageografica,
-        _ingested_at,
-        _source_url
+        UNLOCODE AS location_id,
+        NOMLOCALITAT AS location_name,
+        ISOPAIS AS country_id,
+        NOMPAIS AS country_name,
+        AREGEOGRAFICA AS geoarea_id,
+        NOMAREAGEOGRAFICA AS geoarea_name,
+        _INGESTED_AT,
+        _SOURCE_URL
 
     from source
 

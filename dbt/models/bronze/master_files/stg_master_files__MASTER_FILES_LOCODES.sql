@@ -9,10 +9,10 @@ source as (
 renamed as (
 
     select
-        unlocode,
-        nomlocalitat,
-        _ingested_at,
-        _source_url
+        UNLOCODE AS location_id,
+        NOMLOCALITAT AS location_name,
+        _INGESTED_AT,
+        _SOURCE_URL
 
     from source
 

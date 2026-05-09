@@ -9,11 +9,11 @@ source as (
 renamed as (
 
     select
-        naviliera,
-        nomcurt,
-        idlloyds,
-        _ingested_at,
-        _source_url
+        NAVILIERA AS shippingcompany_id,
+        NOMCURT AS shippingcompany_name,
+        IDLLOYDS AS shippingcompany_id,
+        _INGESTED_AT,
+        _SOURCE_URL
 
     from source
 

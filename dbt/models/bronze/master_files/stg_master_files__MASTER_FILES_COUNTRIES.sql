@@ -9,15 +9,15 @@ source as (
 renamed as (
 
     select
-        isopais,
-        nompais,
-        areeconomica,
-        idareaforeland,
-        nomareaforeland,
-        idsubareaforeland,
-        nomareasubforeland,
-        _ingested_at,
-        _source_url
+        ISOPAIS AS country_id,
+        NOMPAIS AS country_name,
+        AREECONOMICA AS econarea,
+        IDAREAFORELAND AS forelandarea_id,
+        NOMAREAFORELAND AS forelandarea_name,
+        IDSUBAREAFORELAND AS subforelandarea_id,
+        NOMAREASUBFORELAND AS subforelandarea_name,
+        _INGESTED_AT,
+        _SOURCE_URL
 
     from source
 

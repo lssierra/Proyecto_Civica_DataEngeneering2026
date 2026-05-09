@@ -9,10 +9,10 @@ source as (
 renamed as (
 
     select
-        idareaforeland,
-        nomareaforeland,
-        _ingested_at,
-        _source_url
+        IDAREAFORELAND AS forelandarea_id,
+        NOMAREAFORELAND AS forelandarea_name,
+        _INGESTED_AT,
+        _SOURCE_URL
 
     from source
 
