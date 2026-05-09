@@ -1,0 +1,477 @@
+version: 2
+
+sources:
+  - name: port_operation
+    description: <
+    schema: port_operation
+    database: "{{ env_var('DBT_ENVIRONMENTS', 'FAIL') }}_BRONZE_DB"
+
+    quoting:
+      database: false
+      schema: false
+      identifier: false
+
+    config:
+      freshness:
+        warn_after:  {count: 24, period: hour}
+        error_after: {count: 48, period: hour}
+      loaded_at_field: _INGESTED_AT
+    
+    tables:
+      - name: PORT_BCN_ARRIVALS_TODAY_RAW
+        description: <
+        
+        columns:
+          - name: ANYESCALA
+            description: <
+          - name: ESCALANUM
+            description: <
+          - name: ESCALAESTAT
+            description: <
+          - name: VAIXELLNOM
+            description: <
+          - name: VAIXELLTIPUS
+            description: <
+          - name: MMSI
+            description: <
+          - name: IMO
+            description: <
+          - name: CALLSIGN
+            description: <
+          - name: ESLORA_METRES
+            description: <
+          - name: CALAT_METRES
+            description: <
+          - name: MANEGA_METRES
+            description: <
+          - name: VAIXELLBANDERACODI
+            description: <
+          - name: VAIXELLBANDERANOM
+            description: <
+          - name: NAVIERA
+            description: <
+          - name: CODIGO_NAVIERA
+            description: <
+          - name: CONSIGNATARI
+            description: <
+          - name: TERMINALCODI
+            description: <
+          - name: TERMINALNOM
+            description: <
+          - name: MOLLCODI
+            description: <
+          - name: MOLLMODULS
+            description: <
+          - name: ESTOPERATIUID
+            description: <
+          - name: ETADIA
+            description: <
+          - name: ETAHORA
+            description: <
+          - name: ETAUTC
+            description: <
+          - name: ETA
+            description: <
+          - name: ETDDIA
+            description: <
+          - name: ETDHORA
+            description: <
+          - name: ETDUTC
+            description: <
+          - name: ETD
+            description: <
+          - name: PORTORIGENCODI
+            description: <
+          - name: PORTORIGENNOM
+            description: <
+          - name: PORTDESTICODI
+            description: <
+          - name: PORTDESTINOM
+            description: <
+          - name: MESINFO
+            description: <
+          - name: _INGESTED_AT
+            description: <
+          - name: _SOURCE_URL
+            description: <
+
+      - name: PORT_BCN_DEPARTURES_TODAY_RAW
+        description: <
+        
+        columns:
+          - name: ANYESCALA
+            description: <
+          - name: ESCALANUM
+            description: <
+          - name: ESCALAESTAT
+            description: <
+          - name: VAIXELLNOM
+            description: <
+          - name: VAIXELLTIPUS
+            description: <
+          - name: MMSI
+            description: <
+          - name: IMO
+            description: <
+          - name: CALLSIGN
+            description: <
+          - name: ESLORA_METRES
+            description: <
+          - name: CALAT_METRES
+            description: <
+          - name: MANEGA_METRES
+            description: <
+          - name: VAIXELLBANDERACODI
+            description: <
+          - name: VAIXELLBANDERANOM
+            description: <
+          - name: CONSIGNATARI
+            description: <
+          - name: TERMINALCODI
+            description: <
+          - name: TERMINALNOM
+            description: <
+          - name: MOLLCODI
+            description: <
+          - name: MOLLMODULS
+            description: <
+          - name: ESTOPERATIUID
+            description: <
+          - name: ETADIA
+            description: <
+          - name: ETAHORA
+            description: <
+          - name: ETAUTC
+            description: <
+          - name: ETA
+            description: <
+          - name: ETDDIA
+            description: <
+          - name: ETDHORA
+            description: <
+          - name: ETDUTC
+            description: <
+          - name: ETD
+            description: <
+          - name: PORTORIGENCODI
+            description: <
+          - name: PORTORIGENNOM
+            description: <
+          - name: PORTDESTICODI
+            description: <
+          - name: PORTDESTINOM
+            description: <
+          - name: MESINFO
+            description: <
+          - name: _INGESTED_AT
+            description: <
+          - name: _SOURCE_URL
+            description: <
+
+      - name: PORT_BCN_ARRIVALS_FERRYS_TODAY_RAW
+        description: <
+        
+        columns:
+          - name: ANYESCALA
+            description: <
+          - name: ESCALANUM
+            description: <
+          - name: ESCALAESTAT
+            description: <
+          - name: VAIXELLNOM
+            description: <
+          - name: VAIXELLTIPUS
+            description: <
+          - name: MMSI
+            description: <
+          - name: IMO
+            description: <
+          - name: CALLSIGN
+            description: <
+          - name: ESLORA_METRES
+            description: <
+          - name: CALAT_METRES
+            description: <
+          - name: MANEGA_METRES
+            description: <
+          - name: VAIXELLBANDERACODI
+            description: <
+          - name: VAIXELLBANDERANOM
+            description: <
+          - name: CONSIGNATARI
+            description: <
+          - name: TERMINALCODI
+            description: <
+          - name: TERMINALNOM
+            description: <
+          - name: MOLLCODI
+            description: <
+          - name: MOLLMODULS
+            description: <
+          - name: ESTOPERATIUID
+            description: <
+          - name: ETADIA
+            description: <
+          - name: ETAHORA
+            description: <
+          - name: ETAUTC
+            description: <
+          - name: ETA
+            description: <
+          - name: ETDDIA
+            description: <
+          - name: ETDHORA
+            description: <
+          - name: ETDUTC
+            description: <
+          - name: ETD
+            description: <
+          - name: PORTORIGENCODI
+            description: <
+          - name: PORTORIGENNOM
+            description: <
+          - name: PORTDESTICODI
+            description: <
+          - name: PORTDESTINOM
+            description: <
+          - name: MESINFO
+            description: <
+          - name: _INGESTED_AT
+            description: <
+          - name: _SOURCE_URL
+            description: <
+
+      - name: PORT_BCN_DEPARTURES_FERRYS_TODAY_RAW
+        description: <
+        
+        columns:
+          - name: ANYESCALA
+            description: <
+          - name: ESCALANUM
+            description: <
+          - name: ESCALAESTAT
+            description: <
+          - name: VAIXELLNOM
+            description: <
+          - name: VAIXELLTIPUS
+            description: <
+          - name: MMSI
+            description: <
+          - name: IMO
+            description: <
+          - name: CALLSIGN
+            description: <
+          - name: ESLORA_METRES
+            description: <
+          - name: CALAT_METRES
+            description: <
+          - name: MANEGA_METRES
+            description: <
+          - name: VAIXELLBANDERACODI
+            description: <
+          - name: VAIXELLBANDERANOM
+            description: <
+          - name: CONSIGNATARI
+            description: <
+          - name: TERMINALCODI
+            description: <
+          - name: TERMINALNOM
+            description: <
+          - name: MOLLCODI
+            description: <
+          - name: MOLLMODULS
+            description: <
+          - name: ESTOPERATIUID
+            description: <
+          - name: ETADIA
+            description: <
+          - name: ETAHORA
+            description: <
+          - name: ETAUTC
+            description: <
+          - name: ETA
+            description: <
+          - name: ETDDIA
+            description: <
+          - name: ETDHORA
+            description: <
+          - name: ETDUTC
+            description: <
+          - name: ETD
+            description: <
+          - name: PORTORIGENCODI
+            description: <
+          - name: PORTORIGENNOM
+            description: <
+          - name: PORTDESTICODI
+            description: <
+          - name: PORTDESTINOM
+            description: <
+          - name: MESINFO
+            description: <
+          - name: _INGESTED_AT
+            description: <
+          - name: _SOURCE_URL
+            description: <
+
+      - name: PORT_BCN_ARRIVALS_7DAYS_RAW
+        description: <
+        
+        columns:
+          - name: ANYESCALA
+            description: <
+          - name: ESCALANUM
+            description: <
+          - name: ESCALAESTAT
+            description: <
+          - name: VAIXELLNOM
+            description: <
+          - name: VAIXELLTIPUS
+            description: <
+          - name: MMSI
+            description: <
+          - name: IMO
+            description: <
+          - name: CALLSIGN
+            description: <
+          - name: ESLORA_METRES
+            description: <
+          - name: CALAT_METRES
+            description: <
+          - name: MANEGA_METRES
+            description: <
+          - name: VAIXELLBANDERACODI
+            description: <
+          - name: VAIXELLBANDERANOM
+            description: <
+          - name: NAVIERA
+            description: <
+          - name: CODIGO_NAVIERA
+            description: <
+          - name: CONSIGNATARI
+            description: <
+          - name: TERMINALCODI
+            description: <
+          - name: TERMINALNOM
+            description: <
+          - name: MOLLCODI
+            description: <
+          - name: MOLLMODULS
+            description: <
+          - name: ESTOPERATIUID
+            description: <
+          - name: ETADIA
+            description: <
+          - name: ETAHORA
+            description: <
+          - name: ETAUTC
+            description: <
+          - name: ETA
+            description: <
+          - name: ETDDIA
+            description: <
+          - name: ETDHORA
+            description: <
+          - name: ETDUTC
+            description: <
+          - name: ETD
+            description: <
+          - name: PORTORIGENCODI
+            description: <
+          - name: PORTORIGENNOM
+            description: <
+          - name: PORTDESTICODI
+            description: <
+          - name: PORTDESTINOM
+            description: <
+          - name: MESINFO
+            description: <
+          - name: _INGESTED_AT
+            description: <
+          - name: _SOURCE_URL
+            description: <
+
+
+      - name: PORT_BCN_ARRIVALS_7DAYS_OPS_RAW
+        description: <
+        
+        columns:
+          - name: SHIP_NAME
+            description: <
+          - name: DOCKING
+            description: <
+          - name: FLAG_CODE
+            description: <
+          - name: FLAG_NAME
+            description: <
+          - name: IMO
+            description: <
+          - name: SHIPPING_COMPANY_CODE
+            description: <
+          - name: SHIPPING_COMPANY_NAME
+            description: <
+          - name: CONSIGNEE
+            description: <
+          - name: SHIP_TYPE_CODE
+            description: <
+          - name: SHIP_TYPE_NAME
+            description: <
+          - name: SHIP_LENGTH
+            description: <
+          - name: GT
+            description: <
+          - name: DOCK_POSITION_CODE
+            description: <
+          - name: DOCK_POSITION_NAME
+            description: <
+          - name: DOCK_POSITION_MODULES
+            description: <
+          - name: OPS_CONN_POSITION_ON_SHIP
+            description: <
+          - name: ETA
+            description: <
+          - name: ETD
+            description: <
+          - name: FIRST_CONNECTION
+            description: <
+          - name: PREVIOUS_CONNECTIONS
+            description: <
+          - name: COMPATIBILY_REQUIRED
+            description: <
+          - name: EXPECTED_CONSUMPTION
+            description: <
+          - name: GANGWAY_BE_USED
+            description: <
+          - name: ADDITION_1
+            description: <
+          - name: ADDITION_2
+            description: <
+          - name: ADDITION_3
+            description: <
+          - name: _INGESTED_AT
+            description: <
+          - name: _SOURCE_URL
+            description: <
+
+      - name: PORT_BCN_ARRIVALS_CRUISES_AND_FERRYS_TODAY_RAW
+        description: <
+        
+        columns:
+          - name: NUMESCALA
+            description: <
+          - name: NOMVAIXELL
+            description: <
+          - name: MOLL
+            description: <
+          - name: ARRIBADA
+            description: <
+          - name: ORIGEN
+            description: <
+          - name: SORTIDA
+            description: <
+          - name: DESTI
+            description: <
+          - name: _INGESTED_AT
+            description: <
+          - name: _SOURCE_URL
+            description: <
