@@ -9,10 +9,10 @@ source as (
 renamed as (
 
     select
-        idtipusvaixellapb,
-        descripciotipusvaixellapb,
-        _ingested_at,
-        _source_url
+        IDTIPUSVAIXELLAPB AS shiptype_id,
+        DESCRIPCIOTIPUSVAIXELLAPB AS shiptype_name,
+        _INGESTED_AT,
+        _SOURCE_URL
 
     from source
 

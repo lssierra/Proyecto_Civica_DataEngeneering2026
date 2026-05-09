@@ -9,10 +9,10 @@ source as (
 renamed as (
 
     select
-        codalineacio,
-        nomalineacio,
-        _ingested_at,
-        _source_url
+        NOMALINEACIO AS dock_name,
+        CODALINEACIO AS dock_id,
+        _INGESTED_AT,
+        _SOURCE_URL
 
     from source
 

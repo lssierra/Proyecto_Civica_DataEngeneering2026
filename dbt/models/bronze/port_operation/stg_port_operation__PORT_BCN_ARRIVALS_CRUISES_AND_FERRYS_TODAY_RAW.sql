@@ -9,15 +9,15 @@ source as (
 renamed as (
 
     select
-        numescala,
-        nomvaixell,
-        moll,
-        arribada,
-        origen,
-        sortida,
-        desti,
-        _ingested_at,
-        _source_url
+            NUMESCALA AS docking_id,
+            NOMVAIXELL AS ship_name,
+            MOLL AS dock_id,
+            ARRIBADA AS ETA,
+            ORIGEN AS originport_name,
+            SORTIDA AS ETD,
+            DESTI AS destinationport_name,
+            _INGESTED_AT,
+            _SOURCE_URL
 
     from source
 

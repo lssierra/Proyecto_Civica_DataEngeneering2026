@@ -9,10 +9,10 @@ source as (
 renamed as (
 
     select
-        codubiedi,
-        nomubicacio,
-        _ingested_at,
-        _source_url
+        CODUBIEDI AS terminal_id,
+        NOMUBICACIO AS terminal_name,
+        _INGESTED_AT,
+        _SOURCE_URL
 
     from source
 

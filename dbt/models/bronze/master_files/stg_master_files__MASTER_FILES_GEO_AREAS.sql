@@ -9,10 +9,10 @@ source as (
 renamed as (
 
     select
-        idareageografica,
-        nomareageografica,
-        _ingested_at,
-        _source_url
+        IDAREAGEOGRAFICA AS geoarea_id,
+        NOMAREAGEOGRAFICA AS geoarea_name,
+        _INGESTED_AT,
+        _SOURCE_URL
 
     from source
 
