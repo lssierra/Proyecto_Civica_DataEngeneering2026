@@ -1,0 +1,166 @@
+version: 2
+
+sources:
+
+  - name: master_files
+    description: < 
+    schema: master_files
+    database: "{{ env_var('DBT_ENVIRONMENTS', 'FAIL') }}_BRONZE_DB"
+
+    quoting:
+      database: false
+      schema: false
+      identifier: false
+
+    config:
+      freshness:
+        warn_after:  {count: 6, period: day}
+        error_after: {count: 7, period: day}
+      loaded_at_field: _INGESTED_AT
+
+    
+    tables:
+      - name: MASTER_FILES_PORTS
+        description: < 
+
+        columns:    
+          - name: UNLOCODE
+            description: <                
+          - name: NOMLOCALITAT
+            description: <         
+          - name: ISOPAIS
+            description: <              
+          - name: NOMPAIS
+            description: <              
+          - name: AREGEOGRAFICA
+            description: <        
+          - name: NOMAREAGEOGRAFICA
+            description: <    
+          - name: _INGESTED_AT
+            description: <        
+          - name: _SOURCE_URL
+            description: <                
+      
+      - name: MASTER_FILES_DOCKS
+        description: < 
+        columns:
+          - name: CODALINEACIO
+            description: < 
+          - name: NOMALINEACIO
+            description: < 
+          - name: _INGESTED_AT
+            description: < 
+          - name: _SOURCE_URL
+            description: < 
+        
+       
+      - name: MASTER_FILES_LOCODES
+        description: < 
+
+        columns:
+          - name: UNLOCODE
+            description: < 
+          - name: NOMLOCALITAT
+            description: < 
+          - name: _INGESTED_AT
+            description: < 
+          - name: _SOURCE_URL
+            description: <  
+      - name: MASTER_FILES_GEO_AREAS
+        description: < 
+        
+        columns:
+          - name: IDAREAGEOGRAFICA
+            description: < 
+          - name: NOMAREAGEOGRAFICA
+            description: < 
+          - name: _INGESTED_AT
+            description: < 
+          - name: _SOURCE_URL
+            description: < 
+      - name: MASTER_FILES_SHIP_OPERATORS
+        description: < 
+
+        columns:
+          - name: NAVILIERA
+            description: <
+          - name: NOMCURT
+            description: <
+          - name: IDLLOYDS
+            description: <
+          - name: _INGESTED_AT
+            description: <
+          - name: _SOURCE_URL
+            description: <
+      - name: MASTER_FILES_COUNTRIES
+        description: < 
+
+        columns:
+          - name: ISOPAIS
+            description: <
+          - name: NOMPAIS
+            description: <
+          - name: AREECONOMICA
+            description: <
+          - name: IDAREAFORELAND
+            description: <
+          - name: NOMAREAFORELAND
+            description: <
+          - name: IDSUBAREAFORELAND
+            description: <
+          - name: NOMAREASUBFORELAND
+            description: <
+          - name: _INGESTED_AT
+            description: <
+          - name: _SOURCE_URL
+            description: <
+      - name: MASTER_FILES_SHIP_TYPES
+        description: < 
+
+        columns:
+          - name: IDTIPUSVAIXELLAPB
+            description: < 
+          - name: DESCRIPCIOTIPUSVAIXELLAPB
+            description: < 
+          - name: _INGESTED_AT
+            description: < 
+          - name: _SOURCE_URL
+            description: <  
+      - name: MASTER_FILES_FORELAND_AREAS
+        description: < 
+
+        columns:
+          - name: IDAREAFORELAND
+            description: <
+          - name: NOMAREAFORELAND
+            description: <
+          - name: _INGESTED_AT
+            description: <
+          - name: _SOURCE_URL
+            description: < 
+      - name: MASTER_FILES_SUBFORELAND_AREAS
+        description: < 
+
+        columns:
+          - name: IDAREAFORELAND
+            description: < 
+          - name: IDSUBAREAFORELAND
+            description: < 
+          - name: NOMSUBAREAFORELAND
+            description: < 
+          - name: _INGESTED_AT
+            description: < 
+          - name: _SOURCE_URL
+            description: <  
+      - name: MASTER_FILES_PORT_BCN_LOCATIONS
+        description: < 
+
+        columns:
+          - name: CODUBIEDI
+            description: <
+          - name: NOMUBICACIO
+            description: <
+          - name: _INGESTED_AT
+            description: <
+          - name: _SOURCE_URL
+            description: <
