@@ -49,7 +49,7 @@ models:
     silver: #aqui sigue estqndo todq la data temporal
       +materialized: view
       +database: "{{ env_var('DBT_ENVIRONMENTS', 'FAIL') }}_SILVER_DB"
-      +schema: core #aqui va a estar todo normalizado al 3 y no consume extra por ser view
+      +schema: core #aqui va a estar todo normalizado al 3 y no consume almacenamiento extra por ser view
       master_files_core:
       port_operation_core:
       meteo_stations_core:
