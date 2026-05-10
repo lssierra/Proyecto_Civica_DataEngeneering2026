@@ -11,7 +11,7 @@ renamed as (
     select
         NAVILIERA AS shippingcompany_id,
         NOMCURT AS shippingcompany_name,
-        IDLLOYDS AS shippingcompany_id,
+        IDLLOYDS AS shippingcompany_lloyds,
         _INGESTED_AT,
         _SOURCE_URL
 

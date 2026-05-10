@@ -1,34 +1,240 @@
-# dbt run-operation generate_model_yaml --args '{"model_names": [""stg_master_files__MASTER_FILES_COUNTRIES", "stg_master_files__MASTER_FILES_DOCKS", "stg_master_files__MASTER_FILES_FORELAND_AREAS", "stg_master_files__MASTER_FILES_GEO_AREAS", "stg_master_files__MASTER_FILES_LOCODES", "stg_master_files__MASTER_FILES_PORT_BCN_LOCATIONS", "stg_master_files__MASTER_FILES_PORTS", "stg_master_files__MASTER_FILES_SHIP_OPERATORS", "stg_master_files__MASTER_FILES_SHIP_TYPES", "stg_master_files__MASTER_FILES_SUBFORELAND_AREAS"]}'
+# yaml-language-server: $schema=https://raw.githubusercontent.com/dbt-labs/dbt-jsonschema/main/schemas/dbt_yml_files.json
 version: 2
 
 models:
-  - name: stg_master_files__master_files_countries
-    description: ""
-    
-  - name: stg_master_files__master_files_docks
-    description: ""
-    
-  - name: stg_master_files__master_files_foreland_areas
-    description: ""
-    
-  - name: stg_master_files__master_files_geo_areas
-    description: ""
-    
-  - name: stg_master_files__master_files_locodes
-    description: ""
-    
-  - name: stg_master_files__master_files_port_bcn_locations
-    description: ""
-    
-  - name: stg_master_files__master_files_ports
-    description: ""
-    
-  - name: stg_master_files__master_files_ship_operators
-    description: ""
-    
-  - name: stg_master_files__master_files_ship_types
-    description: ""
-    
-  - name: stg_master_files__master_files_subforeland_areas
-    description: ""
-    
+  - name: stg_master_files__ports
+    description: Master list of ports with geographic and country metadata
+    columns:
+      - name: location_id
+        description: UN/LOCODE identifying the location
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+      - name: location_name
+        description: Name of the locality
+      - name: country_id
+        description: ISO country code
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+      - name: country_name
+        description: Name of the country
+      - name: geoarea_id
+        description: Geographic area identifier
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+      - name: geoarea_name
+        description: Name of the geographic area
+      - name: _INGESTED_AT
+        description: Timestamp when the record was ingested into the bronze layer
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+      - name: _SOURCE_URL
+        description: URL of the source API endpoint that provided this record
+  - name: stg_master_files__docks
+    description: Master list of dock/berth alignments at Port of Barcelona
+    columns:
+    - name: dock_name
+      description: Name of the berth/dock alignment
+    - name: dock_id
+      description: Code identifying the berth/moll
+      data_tests:
+        - not_null:
+            config:
+              severity: error
+    - name: _INGESTED_AT
+      description: Timestamp when the record was ingested into the bronze layer
+      data_tests:
+        - not_null:
+            config:
+              severity: error
+    - name: _SOURCE_URL
+      description: URL of the source API endpoint that provided this record
+  - name: stg_master_files__locodes
+    description: Master list of UN/LOCODEs and their locality names
+    columns:
+    - name: location_id
+      description: UN/LOCODE identifying the location
+      data_tests:
+        - not_null:
+            config:
+              severity: error
+    - name: location_name
+      description: Name of the locality
+    - name: _INGESTED_AT
+      description: Timestamp when the record was ingested into the bronze layer
+      data_tests:
+        - not_null:
+            config:
+              severity: error
+    - name: _SOURCE_URL
+      description: URL of the source API endpoint that provided this record
+  - name: stg_master_files__geo_areas
+    description: Master list of geographic areas
+    columns:
+    - name: geoarea_id
+      description: Geographic area identifier
+      data_tests:
+        - not_null:
+            config:
+              severity: error
+    - name: geoarea_name
+      description: Name of the geographic area
+    - name: _INGESTED_AT
+      description: Timestamp when the record was ingested into the bronze layer
+      data_tests:
+        - not_null:
+            config:
+              severity: error
+    - name: _SOURCE_URL
+      description: URL of the source API endpoint that provided this record
+  - name: stg_master_files__ship_operators
+    description: Master list of shipping companies / navieras
+    columns:
+    - name: shippingcompany_id
+      description: Identifier of the shipping company / naviera
+      data_tests:
+        - not_null:
+            config:
+              severity: error
+    - name: shippingcompany_name
+      description: Name of the shipping company / naviera
+    - name: shippingcompany_lloyds
+      description: Identifier of the shipping company / naviera
+      data_tests:
+        - not_null:
+            config:
+              severity: warn
+    - name: _INGESTED_AT
+      description: Timestamp when the record was ingested into the bronze layer
+      data_tests:
+        - not_null:
+            config:
+              severity: error
+    - name: _SOURCE_URL
+      description: URL of the source API endpoint that provided this record
+  - name: stg_master_files__countries
+    description: Master list of countries with economic and foreland area classifications
+    columns:
+    - name: country_id
+      description: ISO country code
+      data_tests:
+        - not_null:
+            config:
+              severity: error
+    - name: country_name
+      description: Name of the country
+    - name: econarea
+      description: Economic area classification
+    - name: forelandarea_id
+      description: Foreland area identifier
+      data_tests:
+        - not_null:
+            config:
+              severity: error
+    - name: forelandarea_name
+      description: Name of the foreland area
+    - name: subforelandarea_id
+      description: Sub-foreland area identifier
+      data_tests:
+        - not_null:
+            config:
+              severity: error
+    - name: subforelandarea_name
+      description: Name of the sub-foreland area
+    - name: _INGESTED_AT
+      description: Timestamp when the record was ingested into the bronze layer
+      data_tests:
+        - not_null:
+            config:
+              severity: error
+    - name: _SOURCE_URL
+      description: URL of the source API endpoint that provided this record
+  - name: stg_master_files__ship_types
+    description: Master list of vessel type codes and descriptions
+    columns:
+    - name: shiptype_id
+      description: Code identifying the vessel type
+      data_tests:
+        - not_null:
+            config:
+              severity: error
+    - name: shiptype_name
+      description: Name/description of the vessel type
+    - name: _INGESTED_AT
+      description: Timestamp when the record was ingested into the bronze layer
+      data_tests:
+        - not_null:
+            config:
+              severity: error
+    - name: _SOURCE_URL
+      description: URL of the source API endpoint that provided this record
+  - name: stg_master_files__foreland_areas
+    description: Master list of foreland areas
+    columns:
+    - name: forelandarea_id
+      description: Foreland area identifier
+      data_tests:
+        - not_null:
+            config:
+              severity: error
+    - name: forelandarea_name
+      description: Name of the foreland area
+    - name: _INGESTED_AT
+      description: Timestamp when the record was ingested into the bronze layer
+      data_tests:
+        - not_null:
+            config:
+              severity: error
+    - name: _SOURCE_URL
+      description: URL of the source API endpoint that provided this record
+  - name: stg_master_files__subforeland_areas
+    description: Master list of sub-foreland areas linked to foreland areas
+    columns:
+    - name: forelandarea_id
+      description: Foreland area identifier
+      data_tests:
+        - not_null:
+            config:
+              severity: error
+    - name: subforelandarea_id
+      description: Sub-foreland area identifier
+      data_tests:
+        - not_null:
+            config:
+              severity: error
+    - name: subforelandarea_name
+      description: Name of the sub-foreland area
+    - name: _INGESTED_AT
+      description: Timestamp when the record was ingested into the bronze layer
+      data_tests:
+        - not_null:
+            config:
+              severity: error
+    - name: _SOURCE_URL
+      description: URL of the source API endpoint that provided this record
+  - name: stg_master_files__port_bcn_locations
+    description: Master list of internal Port of Barcelona locations (terminals, facilities)
+    columns:
+    - name: terminal_id
+      description: Code identifying the terminal or internal port location
+      data_tests:
+        - not_null:
+            config:
+              severity: error
+    - name: terminal_name
+      description: Name of the terminal or internal port location
+    - name: _INGESTED_AT
+      description: Timestamp when the record was ingested into the bronze layer
+      data_tests:
+        - not_null:
+            config:
+              severity: error
+    - name: _SOURCE_URL
+      description: URL of the source API endpoint that provided this record
