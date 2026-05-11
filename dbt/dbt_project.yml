@@ -52,6 +52,9 @@ models:
       +schema: core #aqui va a estar todo normalizado al 3 y no consume almacenamiento extra por ser view
       master_files_core:
       port_operation_core:
+        intermediate:
+          +materialized: table
+          +schema: intermediate
       meteo_stations_core:
       
     gold: 
@@ -62,3 +65,9 @@ models:
       analysis: #aqui analisis de procedencias historicas etc
         +schema: analysis  
       meteo: #
+
+
+snapshots:
+  +transient: false
+  +target_database: "{{ env_var('DBT_ENVIRONMENTS', 'FAIL') }}_SILVER_DB"
+  +target_schema: snapshots
