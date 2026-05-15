@@ -1,3 +1,5 @@
+-- model name: int_ships_docked_today
+
 {% set cols_para_hash = get_column_names(
     ref('stg_port_operation__port_bcn_ships_docked_today_raw'),
     except=['_INGESTED_AT']
@@ -46,4 +48,4 @@ select
     _source_url,
     row_hash
 
-from source
+from with_hash

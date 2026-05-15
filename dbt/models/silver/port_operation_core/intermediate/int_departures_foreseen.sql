@@ -1,3 +1,6 @@
+-- model name: int_departures_foreseen 
+
+
 {% set cols_para_hash = get_column_names(
     ref('stg_port_operation__port_bcn_arrivals_7days_raw'),
     except=['_INGESTED_AT']
@@ -27,7 +30,7 @@ COALESCE(dcft.shiptype_name, dft.shiptype_name, d1t.shiptype_name) AS shiptype_n
 COALESCE(dcft.mmsi, dft.mmsi, d1t.mmsi) AS mmsi,
 COALESCE(dcft.callsign, dft.callsign, d1t.callsign) AS callsign,
 COALESCE(dcft.shippingcompany_id, dft.shippingcompany_id, d1t.shippingcompany_id) AS shippingcompany_id,
-COALESCE(dcft.shippingcompany_name, dft.shippingcompany_name, d1t.shippingcompany_name) AS shippingcompany_name
+COALESCE(dcft.shippingcompany_name, dft.shippingcompany_name, d1t.shippingcompany_name) AS shippingcompany_name,
 d1t._INGESTED_AT
 FROM {{ ref('int_departures_today') }} AS d1t
 FULL OUTER JOIN {{ ref('int_departures_ferrys_today') }} AS dft USING(docking_id)

@@ -1,9 +1,10 @@
-
+-- model name: int_arrivals_7days_ops 
+-- description: filters only latest day of ingestion from corresponding stage, deduplicates keeping only latest ingestion in case of multiple ingestions in a day, and returns casted columns 
 
 WITH filtered AS(
 SELECT *
 FROM {{ ref('stg_port_operation__port_bcn_arrivals_7days_ops_raw') }}
-WHERE _INGESTED_AT >= dateadd('day', -2, current_date)
+WHERE _INGESTED_AT >= dateadd('day', -1, current_date)
 ),
 
 deduplicated AS (
