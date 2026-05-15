@@ -1,3 +1,5 @@
+-- model name: int_arrivals_today 
+-- description: filters only latest day of ingestion from corresponding stage, deduplicates keeping only latest ingestion in case of multiple ingestions in a day, and returns casted columns 
 
 WITH filtered AS(
 SELECT *

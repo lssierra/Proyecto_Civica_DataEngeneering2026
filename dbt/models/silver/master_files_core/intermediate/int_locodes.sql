@@ -1,3 +1,7 @@
+-- model name: int_locodes
+-- description: filters only latest day of ingestion from corresponding stage, deduplicates keeping only latest ingestion in case of multiple ingestions in a day, and returns casted columns 
+
+
 {% set cols_para_hash = get_column_names(
     ref('stg_master_files__locodes'),
     except=['_INGESTED_AT']
