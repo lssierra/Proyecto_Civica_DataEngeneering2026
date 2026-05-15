@@ -27,4 +27,9 @@ with_hash as (
     where rn = 1
 )
 
-SELECT * FROM with_hash
+SELECT 
+    location_id,
+    location_name,
+    _INGESTED_AT,
+    row_hash
+FROM with_hash

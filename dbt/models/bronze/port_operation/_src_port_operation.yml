@@ -475,3 +475,37 @@ sources:
             description: <
           - name: _SOURCE_URL
             description: <
+      - name: PORT_BCN_SHIPS_DOCKED_TODAY_RAW
+        description: <
+
+        columns:
+          - name: NOMVAIXELL
+            description: <
+          - name: NUMESCALA
+            description: <
+          - name: SEQATRACADA
+            description: <
+          - name: ETA
+            description: <
+          - name: ETD
+            description: <
+          - name: VAICODIMO
+            description: <
+          - name: USUNOMRAOSOCIAL
+            description: <
+          - name: CODALINEACIO
+            description: <
+          - name: MODINICIAL
+            description: <
+          - name: MODFINAL
+            description: <
+          - name: ESLORA
+            description: <
+          - name: MANEGA
+            description: <
+          - name: NOMPAIS
+            description: <
+          - name: _INGESTED_AT
+            description: <
+          - name: _SOURCE_URL
+            description: <

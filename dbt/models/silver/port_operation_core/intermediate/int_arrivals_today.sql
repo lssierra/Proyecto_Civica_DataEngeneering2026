@@ -1,8 +1,3 @@
-{% set cols_para_hash = get_column_names(
-    ref('stg_port_operation__port_bcn_arrivals_today_raw'),
-    except=['_INGESTED_AT']
-) %}
-
 
 WITH filtered AS(
 SELECT *
@@ -17,14 +12,6 @@ deduplicated AS (
             order by _INGESTED_AT desc
         ) as rn
     from filtered
-),
-
-with_hash as (
-    select
-        *,
-        {{ dbt_utils.generate_surrogate_key(cols_para_hash) }} as row_hash
-    from deduplicated
-    where rn = 1
 )
 
 SELECT 
@@ -63,6 +50,6 @@ DESTINATIONPORT_ID,
 DESTINATIONPORT_NAME,
 MARINETRAFFIC_URL,
 _INGESTED_AT,
-_SOURCE_URL,
-ROW_HASH
-FROM with_hash
+_SOURCE_URL
+FROM deduplicated
+WHERE rn =1
