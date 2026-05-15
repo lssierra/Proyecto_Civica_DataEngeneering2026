@@ -677,3 +677,61 @@ models:
             severity: error
     - name: _SOURCE_URL
       description: URL of the source API endpoint that provided this record
+  
+  - name: stg_port_operations__port_bcn_ships_docked_today_raw
+    description: Vessels currently docked at Port of Barcelona today
+    columns:
+    - name: ship_name
+      description: Name of the vessel
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: docking_id
+      description: Unique identifier for the port call (escala)
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: docking_seq
+      description: Sequence number of the berthing within the same port call
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: eta
+      description: Estimated time of arrival
+    - name: etd
+      description: Estimated time of departure
+    - name: imo
+      description: IMO vessel identification number
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: consignee
+      description: Port agent / consignee handling the call
+    - name: dock_id
+      description: Code identifying the berth/moll alignment
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: initial_module
+      description: Initial module within the berth
+    - name: final_module
+      description: Final module within the berth
+    - name: ship_length
+      description: Length of the vessel in metres (eslora)
+    - name: ship_width
+      description: Beam/width of the vessel in metres (manga)
+    - name: country_name
+      description: Flag country name in Catalan
+    - name: _ingested_at
+      description: Timestamp when the record was ingested into the bronze layer
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: _source_url
+      description: URL of the source API endpoint that provided this record

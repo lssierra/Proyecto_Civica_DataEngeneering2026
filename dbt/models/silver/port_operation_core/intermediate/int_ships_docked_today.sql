@@ -1,12 +1,12 @@
 {% set cols_para_hash = get_column_names(
-    ref('stg_master_files__countries'),
+    ref('stg_port_operation__port_bcn_ships_docked_today_raw'),
     except=['_INGESTED_AT']
 ) %}
 
 
 WITH filtered AS(
 SELECT *
-FROM {{ ref('stg_master_files__countries') }}
+FROM {{ ref('stg_port_operation__port_bcn_ships_docked_today_raw') }}
 WHERE _INGESTED_AT >= dateadd('day', -2, current_date)
 ),
 
@@ -27,12 +27,23 @@ with_hash as (
     where rn = 1
 )
 
-SELECT 
-    country_id,
-    country_name,
-    econarea,
-    forelandarea_id,
-    subforelandarea_id,
-    _INGESTED_AT,
+
+select
+    ship_name,
+    docking_id,
+    docking_seq,
+    eta,
+    etd,
+    imo,
+    CONSIGNEE,
+    dock_id,
+    initial_module,
+    final_module,
+    ship_length,
+    ship_width,
+    COUNTRY_NAME,
+    _ingested_at,
+    _source_url,
     row_hash
-FROM with_hash
+
+from source

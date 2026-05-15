@@ -51,6 +51,9 @@ models:
       +database: "{{ env_var('DBT_ENVIRONMENTS', 'FAIL') }}_SILVER_DB"
       +schema: core #aqui va a estar todo normalizado al 3 y no consume almacenamiento extra por ser view
       master_files_core:
+        intermidiate:
+          +materialized: table
+          +schema: intermediate
       port_operation_core:
         intermediate:
           +materialized: table
@@ -70,4 +73,8 @@ models:
 snapshots:
   +transient: false
   +target_database: "{{ env_var('DBT_ENVIRONMENTS', 'FAIL') }}_SILVER_DB"
-  +target_schema: snapshots
+  +target_schema: core
+  master_files_core:
+    +target_schema: snapshots
+  port_operation_core:
+    +target_schema: snapshots
