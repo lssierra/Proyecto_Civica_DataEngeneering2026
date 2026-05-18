@@ -10,13 +10,13 @@
 WITH filtered AS(
 SELECT *
 FROM {{ ref('stg_master_files__geo_areas') }}
-WHERE _INGESTED_AT >= dateadd('day', -2, current_date)
+WHERE  (_INGESTED_AT::DATE)::VARCHAR = '{{var('date_of_analysis')}}'
 ),
 
 deduplicated AS (
         select *,
         row_number() over (
-            partition by docking_id
+            partition by geoarea_id
             order by _INGESTED_AT desc
         ) as rn
     from filtered

@@ -4,7 +4,7 @@
 WITH filtered AS(
 SELECT *
 FROM {{ ref('stg_port_operation__port_bcn_arrivals_7days_ops_raw') }}
-WHERE _INGESTED_AT >= dateadd('day', -1, current_date)
+WHERE (_INGESTED_AT::DATE)::VARCHAR = '{{var('date_of_analysis')}}'
 ),
 
 deduplicated AS (
@@ -31,13 +31,13 @@ SHIPPINGCOMPANY_NAME,
 CONSIGNEE,
 SHIPTYPE_ID,
 SHIPTYPE_NAME,
-SHIP_LENGTH::FLOAT,
-GT::FLOAT,
+REPLACE(SHIP_LENGTH,',','.')::float AS ship_length,
+REPLACE(GT,',','.')::float AS GT,
 DOCK_ID,
 DOCK_NAME,
 DOCK_MODULES,
-ETA::TIMESTAMP,
-ETD::TIMESTAMP,
+ETA::TIMESTAMP AS ETA,
+ETD::TIMESTAMP AS ETD,
 _INGESTED_AT,
 _SOURCE_URL
 

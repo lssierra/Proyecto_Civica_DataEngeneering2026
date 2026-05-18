@@ -1,11 +1,11 @@
-{% snapshot snp_arrivals_foreseen %}
+{% snapshot snp_ships_arrivals_foreseen %}
 
 {{
     config(
-        targuet_shema='snapshots',
+        target_shema='snapshots',
         unique_key='imo',
         strategy='check',
-        check_cols=['row_hash'],   -- solo detecta cambios reales de negocio
+        check_cols=['row_hash'],   
         hard_deletes='new_record'
     )
 }}
@@ -22,9 +22,8 @@ shiptype_name,
 mmsi,
 callsign,
 shippingcompany_id,
-shippingcompany_name,
 row_hash
 
-from {{ ref('int_arrivals_foreseen') }}
+from {{ ref('arrivals_foreseen') }}
 
 {% endsnapshot %}

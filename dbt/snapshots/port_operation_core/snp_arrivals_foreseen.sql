@@ -2,10 +2,10 @@
 
 {{
     config(
-        targuet_shema='snapshots',
+        target_shema='snapshots',
         unique_key='docking_id',
         strategy='check',
-        check_cols=['row_hash'],   -- solo detecta cambios reales de negocio
+        check_cols=['row_hash'],   
         hard_deletes='new_record'
     )
 }}
@@ -24,6 +24,6 @@ consignee,
 dock_modules,
 row_hash
 
-from {{ ref('int_arrivals_foreseen') }}
+from {{ ref('arrivals_foreseen') }}
 
 {% endsnapshot %}
