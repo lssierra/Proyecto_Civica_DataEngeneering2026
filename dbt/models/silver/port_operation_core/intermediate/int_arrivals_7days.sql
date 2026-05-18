@@ -19,7 +19,8 @@ deduplicated AS (
 
 SELECT 
 DOCKING_YEAR::INT AS DOCKING_YEAR ,
-DOCKING_ID,
+SPLIT_PART(docking_id, '-', 1)::INT AS docking_id,   
+SPLIT_PART(docking_id, '-', 2)::INT AS docking_seq, 
 DOCKINGSTATUS_DESC,
 SHIP_NAME,
 SHIPTYPE_NAME,
