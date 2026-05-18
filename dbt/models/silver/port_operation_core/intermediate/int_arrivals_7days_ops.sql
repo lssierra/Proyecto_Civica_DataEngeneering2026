@@ -17,12 +17,11 @@ deduplicated AS (
 )
 
 SELECT 
+
+SPLIT_PART(docking_id, '-', 1)::INT AS docking_year,       
+SPLIT_PART(docking_id, '-', 2)::INT AS docking_id,   
+SPLIT_PART(docking_id, '-', 3)::INT AS docking_seq,   
 SHIP_NAME,
-REGEXP_REPLACE(
-    DOCKING_ID,
-    '^' || YEAR(CURRENT_DATE())::VARCHAR || '-',
-    ''
-) AS DOCKING_ID,
 COUNTRY_ID,
 COUNTRY_NAME,
 IMO,

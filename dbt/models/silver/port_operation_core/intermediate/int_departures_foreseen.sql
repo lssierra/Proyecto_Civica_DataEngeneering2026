@@ -6,6 +6,7 @@
 WITH unified AS (
 SELECT
 COALESCE(d1t.docking_id, dft.docking_id, dcft.docking_id) AS docking_id,
+COALESCE(d1t.docking_seq, dft.docking_seq) AS docking_seq,
 COALESCE(dft.docking_year, d1t.docking_year) AS docking_year,
 COALESCE(dcft.eta, dft.eta, d1t.eta) AS eta,
 COALESCE(dcft.etd, dft.etd, d1t.etd) AS etd,
@@ -35,6 +36,7 @@ SELECT
 --para snp_departures_foreseen
 u.docking_id,
 u.docking_year,
+u.docking_seq,
 u.eta,
 u.etd,
 u.dockingstatus_id,

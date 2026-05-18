@@ -8,6 +8,7 @@
 WITH unified AS (
 SELECT
 COALESCE(a7.docking_id, a7o.docking_id, a1t.docking_id, aft.docking_id, acft.docking_id) AS docking_id,
+COALESCE(a7.docking_seq, a7o.docking_seq, a1t.docking_seq, aft.docking_seq) AS docking_seq,
 COALESCE( aft.docking_year, a1t.docking_year, a7.docking_year) AS docking_year,
 COALESCE(acft.eta, aft.eta, a1t.eta, a7.eta, a7o.eta) AS eta,
 COALESCE(acft.etd, aft.etd, a1t.etd, a7.etd, a7o.etd) AS etd,
@@ -44,6 +45,7 @@ SELECT
 -- para snp_arrivals_foreseen
 docking_id,
 docking_year,
+docking_seq,
 eta,
 etd,
 dockingstatus_id,
