@@ -1,11 +1,11 @@
-{% snapshot snp_ships_departures_foreseen %}
+{% snapshot snp_ships_dockings_active %}
 
 {{
     config(
-        targuet_shema='snapshots',
+        target_shema='snapshots',
         unique_key='imo',
         strategy='check',
-        check_cols=['row_hash'],   -- solo detecta cambios reales de negocio
+        check_cols=['row_hash'],   
         hard_deletes='new_record'
     )
 }}
@@ -25,6 +25,6 @@ shippingcompany_id,
 shippingcompany_name,
 row_hash
 
-from {{ ref('int_ships_departures_foreseen') }}
+from {{ ref('ships_docked_today') }}
 
 {% endsnapshot %}

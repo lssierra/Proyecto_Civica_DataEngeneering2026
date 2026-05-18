@@ -5,7 +5,7 @@
 WITH filtered AS(
 SELECT *
 FROM {{ ref('stg_port_operation__port_bcn_arrivals_cruises_and_ferrys_today_raw') }}
-WHERE _INGESTED_AT >= dateadd('day', -2, current_date)
+WHERE  (_INGESTED_AT::DATE)::VARCHAR  = '{{var('date_of_analysis')}}'
 ),
 
 deduplicated AS (
