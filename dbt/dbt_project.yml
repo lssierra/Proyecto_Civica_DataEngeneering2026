@@ -42,7 +42,7 @@ models:
       +database: "{{ env_var('DBT_ENVIRONMENTS', 'FAIL') }}_SILVER_DB"
       +schema: core #aqui va a estar todo normalizado al 3 y no consume almacenamiento extra por ser view
       master_files_core:
-        intermidiate:
+        intermediate:
           +materialized: table
           +schema: intermediate
       port_operation_core:

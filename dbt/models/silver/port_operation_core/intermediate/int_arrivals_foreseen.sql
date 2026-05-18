@@ -32,7 +32,8 @@ COALESCE(aft.mmsi, a1t.mmsi, a7.mmsi) AS mmsi,
 COALESCE(aft.callsign, a1t.callsign, a7.callsign) AS callsign,
 COALESCE(a1t.shippingcompany_id, a7.shippingcompany_id, a7o.shippingcompany_id) AS shippingcompany_id,
 COALESCE(a1t.shippingcompany_name, a7.shippingcompany_name, a7o.shippingcompany_name) AS shippingcompany_name,
-a7._INGESTED_AT
+a7._INGESTED_AT,
+a7o.ops
 FROM {{ ref('int_arrivals_7days') }} AS a7
 FULL OUTER JOIN {{ ref('int_arrivals_7days_ops') }} AS a7o USING(docking_id)
 FULL OUTER JOIN {{ ref('int_arrivals_today') }} AS a1t USING(docking_id)
@@ -40,35 +41,70 @@ FULL OUTER JOIN {{ ref('int_arrivals_ferrys_today') }} AS aft USING(docking_id)
 FULL OUTER JOIN {{ ref('int_arrivals_cruises_and_ferrys_today') }} AS acft USING(docking_id)
 ),
 
-clean AS (
+with_shiptype_id AS (
 SELECT
 -- para snp_arrivals_foreseen
-docking_id,
-docking_year,
-docking_seq,
-eta,
-etd,
-dockingstatus_id,
-imo,
-originport_id,
-destinationport_id,
-dock_id,
-consignee,
-dock_modules,
+u.docking_id,
+u.docking_year,
+u.docking_seq,
+u.eta,
+u.etd,
+u.dockingstatus_id,
+u.imo,
+u.originport_id,
+u.destinationport_id,
+u.dock_id,
+u.consignee,
+u.dock_modules,
 
 --para snp_ships_arrivals_foreseem
-ship_name,
-ship_length,
-ship_width,
-ship_draft,
-marinetraffic_url,
-shiptype_id,
-shiptype_name,
-mmsi,
-callsign,
-shippingcompany_id
+u.ship_name,
+u.ship_length,
+u.ship_width,
+u.ship_draft,
+u.marinetraffic_url,
+COALESCE(u.shiptype_id, st.shiptype_id) AS shiptype_id,
+u.shiptype_name,
+u.mmsi,
+u.callsign,
+u.shippingcompany_id
 
-FROM unified
+FROM unified AS u
+LEFT JOIN {{ ref('int_ship_types') }} AS st 
+    ON u.shiptype_name = st.shiptype_name
+),
+
+clean as (
+SELECT
+-- para snp_arrivals_foreseen
+u.docking_id,
+u.docking_year,
+u.docking_seq,
+u.eta,
+u.etd,
+u.dockingstatus_id,
+u.imo,
+u.originport_id,
+u.destinationport_id,
+u.dock_id,
+u.consignee,
+u.dock_modules,
+
+--para snp_ships_arrivals_foreseem
+u.ship_name,
+u.ship_length,
+u.ship_width,
+u.ship_draft,
+u.marinetraffic_url,
+u.shiptype_id,
+st.shiptype_name,
+u.mmsi,
+u.callsign,
+u.shippingcompany_id
+
+FROM with_shiptype_id AS u
+LEFT JOIN {{ ref('int_ship_types') }} AS st 
+    ON u.shiptype_id = st.shiptype_id
 )
 
 SELECT * FROM clean
