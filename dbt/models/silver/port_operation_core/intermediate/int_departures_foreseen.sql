@@ -53,7 +53,7 @@ u.ship_length,
 u.ship_width,
 u.ship_draft,
 u.marinetraffic_url,
-st.shiptype_id,
+st.shiptype_id AS shiptype_id,
 u.shiptype_name,
 u.mmsi,
 u.callsign
