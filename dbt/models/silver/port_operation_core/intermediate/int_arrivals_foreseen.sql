@@ -67,7 +67,8 @@ COALESCE(u.shiptype_id, st.shiptype_id) AS shiptype_id,
 u.shiptype_name,
 u.mmsi,
 u.callsign,
-u.shippingcompany_id
+u.shippingcompany_id,
+u.ops
 
 FROM unified AS u
 LEFT JOIN {{ ref('int_ship_types') }} AS st 
@@ -100,7 +101,8 @@ u.shiptype_id,
 st.shiptype_name,
 u.mmsi,
 u.callsign,
-u.shippingcompany_id
+u.shippingcompany_id,
+u.ops
 
 FROM with_shiptype_id AS u
 LEFT JOIN {{ ref('int_ship_types') }} AS st 

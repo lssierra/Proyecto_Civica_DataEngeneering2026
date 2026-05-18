@@ -42,4 +42,4 @@ _INGESTED_AT,
 _SOURCE_URL
 
 FROM deduplicated
-WHERE rn =1
+WHERE rn = 1
