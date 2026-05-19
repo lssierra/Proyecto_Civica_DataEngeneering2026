@@ -22,6 +22,7 @@ deduplicated AS (
  clean AS (
 select
     ship_name,
+    YEAR(('{{var('date_of_analysis')}}')::DATE)::INT AS docking_year,
     docking_id,
     docking_seq,
     eta,

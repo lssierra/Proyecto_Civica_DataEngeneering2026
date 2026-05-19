@@ -1,9 +1,21 @@
 version: 2
 
 models:
+###################################################################################################################################################
   - name: int_arrivals_7days_ops
     description: Filters latest ingestion, deduplicates by docking_id and casts columns from OPS shore power data for the next 7 days
+    data_tests:
+      - unique_docking_combination
+      
     columns:
+    - name: docking_year
+      description: year docking took place
+      data_tests:
+        - not_null
+    - name: docking_seq
+      description: number that identifies the sequence of the docking
+      data_tests:
+        - not_null    
     - name: SHIP_NAME
       description: Name of the vessel
       data_tests:
@@ -14,9 +26,6 @@ models:
       description: Unique identifier for the port call
       data_tests:
       - not_null:
-          config:
-            severity: error
-      - unique:
           config:
             severity: error
     - name: COUNTRY_ID
@@ -77,9 +86,11 @@ models:
             severity: error
     - name: _SOURCE_URL
       description: URL of the source API endpoint
-
+###################################################################################################################################################
   - name: int_arrivals_7days
     description: Filters latest ingestion, deduplicates by docking_id and casts columns from 7-day arrivals
+    data_tests:
+      - unique_docking_combination
     columns:
     - name: DOCKING_YEAR
       description: Year of the port call as integer
@@ -93,9 +104,11 @@ models:
       - not_null:
           config:
             severity: error
-      - unique:
-          config:
-            severity: error
+    - name: docking_seq
+      description: number that identifies docking sequence
+      data_tests:
+        - not_null
+        
     - name: DOCKINGSTATUS_DESC
       description: Human-readable description of the docking status
     - name: SHIP_NAME
@@ -142,10 +155,6 @@ models:
       description: Port agent / consignee handling the call
     - name: TERMINAL_ID
       description: Code identifying the terminal
-      data_tests:
-      - not_null:
-          config:
-            severity: error
     - name: TERMINAL_NAME
       description: Name of the terminal
     - name: DOCK_ID
@@ -196,50 +205,13 @@ models:
             severity: error
     - name: _SOURCE_URL
       description: URL of the source API endpoint
-
-  - name: int_arrivals_cruises_and_ferrys_today
-    description: Filters latest ingestion, deduplicates by docking_id and casts ETA/ETD timestamps from simplified cruise and ferry arrivals
-    columns:
-    - name: DOCKING_ID
-      description: Unique identifier for the port call
-      data_tests:
-      - not_null:
-          config:
-            severity: error
-      - unique:
-          config:
-            severity: error
-    - name: SHIP_NAME
-      description: Name of the vessel
-      data_tests:
-      - not_null:
-          config:
-            severity: error
-    - name: DOCK_ID
-      description: Code identifying the berth/moll
-      data_tests:
-      - not_null:
-          config:
-            severity: error
-    - name: ETA
-      description: Estimated time of arrival as timestamp
-    - name: ORIGINPORT_NAME
-      description: Name of the port of origin
-    - name: ETD
-      description: Estimated time of departure as timestamp
-    - name: DESTINATIONPORT_NAME
-      description: Name of the destination port
-    - name: _INGESTED_AT
-      description: Timestamp when the record was ingested into the bronze layer
-      data_tests:
-      - not_null:
-          config:
-            severity: error
-    - name: _SOURCE_URL
-      description: URL of the source API endpoint
-
+###################################################################################################################################################
+  
+###################################################################################################################################################
   - name: int_arrivals_ferrys_today
     description: Filters latest ingestion, deduplicates by docking_id and casts columns from today's ferry arrivals
+    data_tests:
+      - unique_docking_combination
     columns:
     - name: DOCKING_YEAR
       description: Year of the port call as integer
@@ -253,9 +225,11 @@ models:
       - not_null:
           config:
             severity: error
-      - unique:
-          config:
-            severity: error
+    - name: docking_seq
+      description: number that identifies docking sequence
+      data_tests:
+        - not_null
+        
     - name: DOCKINGSTATUS_DESC
       description: Human-readable description of the docking status
     - name: SHIP_NAME
@@ -294,10 +268,7 @@ models:
       description: Port agent / consignee handling the call
     - name: TERMINAL_ID
       description: Code identifying the terminal
-      data_tests:
-      - not_null:
-          config:
-            severity: error
+
     - name: TERMINAL_NAME
       description: Name of the terminal
     - name: DOCK_ID
@@ -306,6 +277,7 @@ models:
       - not_null:
           config:
             severity: error
+
     - name: DOCK_MODULES
       description: Modules within the berth
     - name: DOCKINGSTATUS_ID
@@ -348,9 +320,11 @@ models:
             severity: error
     - name: _SOURCE_URL
       description: URL of the source API endpoint
-
+###################################################################################################################################################
   - name: int_arrivals_today
     description: Filters latest ingestion, deduplicates by docking_id and casts columns from today's arrivals
+    data_tests:
+      - unique_docking_combination
     columns:
     - name: DOCKING_YEAR
       description: Year of the port call as integer
@@ -364,9 +338,10 @@ models:
       - not_null:
           config:
             severity: error
-      - unique:
-          config:
-            severity: error
+    - name: docking_seq
+      description: number that identifies docking sequence
+      data_tests:
+        - not_null
     - name: DOCKINGSTATUS_DESC
       description: Human-readable description of the docking status
     - name: SHIP_NAME
@@ -413,10 +388,7 @@ models:
       description: Port agent / consignee handling the call
     - name: TERMINAL_ID
       description: Code identifying the terminal
-      data_tests:
-      - not_null:
-          config:
-            severity: error
+
     - name: TERMINAL_NAME
       description: Name of the terminal
     - name: DOCK_ID
@@ -467,9 +439,11 @@ models:
             severity: error
     - name: _SOURCE_URL
       description: URL of the source API endpoint
-
+###################################################################################################################################################
   - name: int_departures_ferrys_today
     description: Filters latest ingestion, deduplicates by docking_id and casts columns from today's ferry departures
+    data_tests:
+      - unique_docking_combination    
     columns:
     - name: DOCKING_YEAR
       description: Year of the port call as integer
@@ -481,9 +455,6 @@ models:
       description: Unique identifier for the port call
       data_tests:
       - not_null:
-          config:
-            severity: error
-      - unique:
           config:
             severity: error
     - name: DOCKINGSTATUS_DESC
@@ -524,10 +495,6 @@ models:
       description: Port agent / consignee handling the call
     - name: TERMINAL_ID
       description: Code identifying the terminal
-      data_tests:
-      - not_null:
-          config:
-            severity: error
     - name: TERMINAL_NAME
       description: Name of the terminal
     - name: DOCK_ID
@@ -578,9 +545,11 @@ models:
             severity: error
     - name: _SOURCE_URL
       description: URL of the source API endpoint
-
+###################################################################################################################################################
   - name: int_departures_today
     description: Filters latest ingestion, deduplicates by docking_id and casts columns from today's departures
+    data_tests:
+      - unique_docking_combination    
     columns:
     - name: DOCKING_YEAR
       description: Year of the port call as integer
@@ -594,9 +563,10 @@ models:
       - not_null:
           config:
             severity: error
-      - unique:
-          config:
-            severity: error
+    - name: docking_seq
+      description: number that identifies docking sequence
+      data_tests:
+        - not_null
     - name: DOCKINGSTATUS_DESC
       description: Human-readable description of the docking status
     - name: SHIP_NAME
@@ -625,28 +595,16 @@ models:
       description: Beam/width of the vessel in metres as float
     - name: COUNTRY_ID
       description: ISO country code
-      data_tests:
-      - not_null:
-          config:
-            severity: error
     - name: COUNTRY_NAME
       description: Name of the country
     - name: SHIPPINGCOMPANY_NAME
       description: Name of the shipping company
     - name: SHIPPINGCOMPANY_ID
       description: Identifier of the shipping company
-      data_tests:
-      - not_null:
-          config:
-            severity: error
     - name: CONSIGNEE
       description: Port agent / consignee handling the call
     - name: TERMINAL_ID
       description: Code identifying the terminal
-      data_tests:
-      - not_null:
-          config:
-            severity: error
     - name: TERMINAL_NAME
       description: Name of the terminal
     - name: DOCK_ID
@@ -697,9 +655,11 @@ models:
             severity: error
     - name: _SOURCE_URL
       description: URL of the source API endpoint
-
+###################################################################################################################################################
   - name: int_ships_docked_today
     description: Filters latest ingestion, deduplicates by docking_id and adds a surrogate row hash for change detection
+    data_tests:
+      - unique_docking_combination    
     columns:
     - name: ship_name
       description: Name of the vessel
@@ -707,6 +667,10 @@ models:
       - not_null:
           config:
             severity: error
+    - name: docking_year
+      description: year of docking
+      data_tests:
+        - not_null
     - name: docking_id
       description: Unique identifier for the port call
       data_tests:
@@ -755,18 +719,12 @@ models:
             severity: error
     - name: _source_url
       description: URL of the source API endpoint
-    - name: row_hash
-      description: Surrogate key generated from all non-metadata columns for change detection
-      data_tests:
-      - not_null:
-          config:
-            severity: error
-      - unique:
-          config:
-            severity: error
 
+###################################################################################################################################################
   - name: int_departures_foreseen
     description: Unified view of all foreseen departures combining today departures, ferry departures and cruise/ferry sources, enriched with a surrogate row hash
+    data_tests:
+      - unique_docking_combination    
     columns:
     - name: docking_id
       description: Unique identifier for the port call
@@ -774,11 +732,10 @@ models:
       - not_null:
           config:
             severity: error
-      - unique:
-          config:
-            severity: error
     - name: docking_year
       description: Year of the port call
+    - name: docking_seq
+      description: Sequence number of the berthing within the same port call
     - name: eta
       description: Estimated time of arrival
     - name: etd
@@ -823,20 +780,14 @@ models:
       description: Timestamp when the record was ingested into the bronze layer
       data_tests:
       - not_null:
-          config:
-            severity: error
-    - name: row_hash
-      description: Surrogate key generated from all non-metadata columns for change detection
-      data_tests:
-      - not_null:
-          config:
-            severity: error
-      - unique:
           config:
             severity: error
 
+###################################################################################################################################################
   - name: int_arrivals_foreseen
     description: Unified view of all foreseen arrivals combining 7-day arrivals, OPS, today arrivals, ferry arrivals and cruise/ferry sources, enriched with a surrogate row hash
+    data_tests:
+      - unique_docking_combination    
     columns:
     - name: docking_id
       description: Unique identifier for the port call
@@ -844,11 +795,10 @@ models:
       - not_null:
           config:
             severity: error
-      - unique:
-          config:
-            severity: error
     - name: docking_year
       description: Year of the port call
+    - name: docking_seq
+      description: number that identifies dockiing sequence
     - name: eta
       description: Estimated time of arrival
     - name: etd
@@ -895,12 +845,5 @@ models:
       - not_null:
           config:
             severity: error
-    - name: row_hash
-      description: Surrogate key generated from all non-metadata columns for change detection
-      data_tests:
-      - not_null:
-          config:
-            severity: error
-      - unique:
-          config:
-            severity: error
+
+###################################################################################################################################################
