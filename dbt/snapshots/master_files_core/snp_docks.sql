@@ -5,6 +5,7 @@
         target_shema='snapshots',
         unique_key='dock_id',
         strategy='check',
+        updated_at='_ingested_at',
         check_cols=['row_hash'],   
         hard_deletes='new_record'
     )

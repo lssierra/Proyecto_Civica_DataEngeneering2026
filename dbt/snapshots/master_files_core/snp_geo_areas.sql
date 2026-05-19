@@ -5,6 +5,7 @@
         target_shema='snapshots',
         unique_key='geoarea_id',
         strategy='check',
+        updated_at='_ingested_at',
         check_cols=['row_hash'],   
         hard_deletes='new_record'
     )
