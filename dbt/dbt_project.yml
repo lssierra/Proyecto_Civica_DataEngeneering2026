@@ -66,7 +66,4 @@ models:
 snapshots:
   +transient: false
   +target_database: "{{ env_var('DBT_ENVIRONMENTS', 'FAIL') }}_SILVER_DB"
-  master_files_core:
-    +target_schema: snapshots
-  port_operation_core:
-    +target_schema: snapshots
+  +target_schema: "snapshots"
