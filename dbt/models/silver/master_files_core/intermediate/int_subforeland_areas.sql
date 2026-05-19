@@ -12,7 +12,8 @@
 WITH filtered AS(
 SELECT *
 FROM {{ ref('stg_master_files__subforeland_areas') }}
-WHERE  (_INGESTED_AT::DATE)::VARCHAR = '{{var('date_of_analysis')}}'
+WHERE  (_INGESTED_AT::DATE)::VARCHAR  <= '{{var('date_of_analysis')}}' 
+AND (_INGESTED_AT::DATE)::VARCHAR > dateadd('day', -7, ('{{var('date_of_analysis')}}')::DATE)::VARCHAR
 ),
 
 deduplicated AS (

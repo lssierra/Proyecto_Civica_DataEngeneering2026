@@ -16,12 +16,13 @@ deduplicated AS (
             order by _INGESTED_AT desc
         ) as rn
     from filtered
-)
+),
 
 
-WITH clean AS (
+ clean AS (
 select
     ship_name,
+    YEAR(('{{var('date_of_analysis')}}')::DATE)::INT AS docking_year,
     docking_id,
     docking_seq,
     eta,
@@ -35,8 +36,7 @@ select
     REPLACE(SHIP_WIDTH,',','.')::float AS ship_width,   
     COUNTRY_NAME,
     _ingested_at,
-    _source_url,
-    row_hash
+    _source_url
 
 from deduplicated
 )
