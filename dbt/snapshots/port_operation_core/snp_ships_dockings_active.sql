@@ -3,7 +3,7 @@
 {{
     config(
         target_shema='snapshots',
-        unique_key='imo',
+        unique_key=['docking_id', 'docking_year', 'docking_seq'],
         strategy='check',
         check_cols=['row_hash'],   
         hard_deletes='new_record'
@@ -11,18 +11,15 @@
 }}
 
 select 
-imo,
+docking_year,
+docking_id,
+docking_seq,
 ship_name,
+imo,
 ship_length,
-ship_width,
-ship_draft,
-marinetraffic_url,
-shiptype_id,
-shiptype_name,
-mmsi,
-callsign,
-shippingcompany_id,
-shippingcompany_name,
+ship_width,   
+COUNTRY_NAME,
+_ingested_at,
 row_hash
 
 from {{ ref('ships_docked_today') }}

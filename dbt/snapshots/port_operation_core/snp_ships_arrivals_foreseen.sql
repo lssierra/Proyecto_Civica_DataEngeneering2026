@@ -3,7 +3,7 @@
 {{
     config(
         target_shema='snapshots',
-        unique_key='imo',
+        unique_key=['docking_id', 'docking_year', 'docking_seq'],
         strategy='check',
         check_cols=['row_hash'],   
         hard_deletes='new_record'
@@ -11,6 +11,9 @@
 }}
 
 select 
+docking_id,
+docking_year,
+docking_seq,
 imo,
 ship_name,
 ship_length,
@@ -22,6 +25,7 @@ shiptype_name,
 mmsi,
 callsign,
 shippingcompany_id,
+_ingested_at,
 row_hash
 
 from {{ ref('arrivals_foreseen') }}

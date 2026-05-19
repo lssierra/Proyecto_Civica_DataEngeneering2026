@@ -35,8 +35,7 @@ select
     REPLACE(SHIP_LENGTH,',','.')::float AS ship_length,
     REPLACE(SHIP_WIDTH,',','.')::float AS ship_width,   
     COUNTRY_NAME,
-    _ingested_at,
-    _source_url
+    _ingested_at
 
 from deduplicated
 )
