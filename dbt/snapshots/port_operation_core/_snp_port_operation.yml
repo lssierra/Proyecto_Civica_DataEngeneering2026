@@ -1,0 +1,19 @@
+snapshots:
+  - name: snp_arrivals_foreseen
+    tests:
+      - snapshot_no_false_versions
+  - name: snp_departures_foreseen
+    tests:
+      - snapshot_no_false_versions
+  - name: snp_dockings_active
+    tests:
+      - snapshot_no_false_versions
+  - name: snp_arrivals_foreseen
+    tests:
+      - snapshot_no_false_versions
+  - name: snp_departures_foreseen
+    tests:
+      - snapshot_no_false_versions
+  - name: snp_dockings_active
+    tests:
+      - snapshot_no_false_versions
