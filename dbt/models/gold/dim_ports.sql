@@ -37,7 +37,7 @@ LEFT JOIN s_locodes AS l
 LEFT JOIN s_countries AS c 
     ON p.country_id = c.country_id
 LEFT JOIN s_geo_areas AS g
-    ON p.geoarea_id = c.geoarea_id
+    ON p.geoarea_id = g.geoarea_id
 ),
 
 
@@ -52,7 +52,7 @@ SELECT
     i.location_name,
     i.country_name,
     i.geoarea_name,
-    f.subforelandarea_name,
+    f.forelandarea_name,
     s.subforelandarea_name
 FROM add_ids AS i
 LEFT JOIN s_foreland_areas AS f
@@ -61,4 +61,6 @@ LEFT JOIN s_subforeland_areas AS s
     ON i.subforelandarea_id =  s.subforelandarea_id
 
 )
+
+SELECT * FROM add_names
 

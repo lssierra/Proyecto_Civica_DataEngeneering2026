@@ -12,7 +12,7 @@ WHERE  (_INGESTED_AT::DATE)::VARCHAR  = '{{var('date_of_analysis')}}'
 deduplicated AS (
         select *,
         row_number() over (
-            partition by docking_id
+            partition by docking_id, docking_seq
             order by _INGESTED_AT desc
         ) as rn
     from filtered
