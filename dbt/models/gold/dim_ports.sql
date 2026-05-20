@@ -1,4 +1,25 @@
-WITH add_ids AS (
+WITH s_ports AS (
+SELECT * FROM {{ ref('snp_ports') }} WHERE dbt_valid_to IS NULL AND dbt_is_deleted = 'False'
+), 
+s_locodes AS (
+SELECT * FROM {{ ref('snp_locodes') }} WHERE dbt_valid_to IS NULL AND dbt_is_deleted = 'False'
+), 
+s_countries AS (
+SELECT * FROM {{ ref('snp_countries') }} WHERE dbt_valid_to IS NULL AND dbt_is_deleted = 'False'
+), 
+s_geo_areas AS (
+SELECT * FROM {{ ref('snp_geo_areas') }} WHERE dbt_valid_to IS NULL AND dbt_is_deleted = 'False'
+), 
+s_foreland_areas AS (
+SELECT * FROM {{ ref('snp_foreland_areas') }} WHERE dbt_valid_to IS NULL AND dbt_is_deleted = 'False'
+), 
+s_subforeland_areas AS (
+SELECT * FROM {{ ref('snp_subforeland_areas') }} WHERE dbt_valid_to IS NULL AND dbt_is_deleted = 'False'
+), 
+
+
+
+add_ids AS (
 SELECT
     p.location_id,
     p.country_id,
@@ -10,12 +31,12 @@ SELECT
     c.country_name,
     g.geoarea_name
 
-FROM {{ ref('snp_ports') }} AS p
-LEFT JOIN {{ ref('snp_locodes') }} AS l 
+FROM s_ports AS p
+LEFT JOIN s_locodes AS l 
     ON p.location_id = l.location_id
-LEFT JOIN {{ ref('snp_countries') }} AS c 
+LEFT JOIN s_countries AS c 
     ON p.country_id = c.country_id
-LEFT JOIN {{ ref('snp_geo_areas') }} AS g
+LEFT JOIN s_geo_areas AS g
     ON p.geoarea_id = c.geoarea_id
 ),
 
@@ -34,9 +55,9 @@ SELECT
     f.subforelandarea_name,
     s.subforelandarea_name
 FROM add_ids AS i
-LEFT JOIN {{ ref('snp_foreland_areas') }} AS f
+LEFT JOIN s_foreland_areas AS f
     ON i.forelandarea_id =  f.forelandarea_id
-LEFT JOIN {{ ref('snp_subforeland_areas') }} AS s
+LEFT JOIN s_subforeland_areas AS s
     ON i.subforelandarea_id =  s.subforelandarea_id
 
 )

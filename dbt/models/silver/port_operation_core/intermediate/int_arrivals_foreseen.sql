@@ -29,6 +29,7 @@ COALESCE(aft.consignee, a1t.consignee, a7.consignee, a7o.consignee) AS consignee
 COALESCE(aft.dock_modules, a1t.dock_modules, a7.dock_modules, a7o.dock_modules) AS dock_modules,
 COALESCE( aft.ship_name, a1t.ship_name, a7.ship_name, a7o.ship_name) AS ship_name,
 COALESCE(aft.country_id, a1t.country_id, a7.country_id, a7o.country_id) AS country_id,
+COALESCE(aft.country_id, a1t.country_id, a7.country_id, a7o.country_id) AS country_name,
 COALESCE(aft.ship_length, a1t.ship_length, a7.ship_length, a7o.ship_length) AS ship_length,
 COALESCE(aft.ship_width, a1t.ship_width, a7.ship_width) AS ship_width,
 COALESCE(aft.ship_draft, a1t.ship_draft, a7.ship_draft) AS ship_draft,
@@ -72,6 +73,8 @@ u.ops,
 
 --para snp_ships_arrivals_foreseem
 u.ship_name,
+u.country_id,
+u.country_name,
 u.ship_length,
 u.ship_width,
 u.ship_draft,
@@ -81,6 +84,7 @@ u.shiptype_name,
 u.mmsi,
 u.callsign,
 u.shippingcompany_id,
+u.shippingcompany_name,
 
 
 --metadata
@@ -112,6 +116,8 @@ u.ops,
 
 --para snp_ships_arrivals_foreseem
 u.ship_name,
+u.country_id,
+u.country_name,
 u.ship_length,
 u.ship_width,
 u.ship_draft,
@@ -121,6 +127,7 @@ st.shiptype_name,
 u.mmsi,
 u.callsign,
 u.shippingcompany_id,
+u.shippingcompany_name,
 
 
 --metadata
