@@ -1,0 +1,154 @@
+version: 2
+
+models:
+  - name: int_countries
+    description: >
+      Filters the latest ingestion records from the countries staging model,
+      deduplicates records keeping the most recent ingestion, and returns standardized country attributes.
+    columns:
+      - name: country_id
+        description: Unique identifier of the country.
+      - name: country_name
+        description: Name of the country.
+      - name: econarea
+        description: Economic area associated with the country.
+      - name: forelandarea_id
+        description: Identifier of the related foreland area.
+      - name: subforelandarea_id
+        description: Identifier of the related subforeland area.
+      - name: _INGESTED_AT
+        description: Timestamp indicating when the record was ingested.
+      - name: row_hash
+        description: Surrogate hash key generated from all business columns for change tracking and deduplication.
+
+  - name: int_docks
+    description: >
+      Filters the latest ingestion records from the docks staging model,
+      deduplicates records keeping the most recent ingestion, and returns standardized dock attributes.
+    columns:
+      - name: dock_name
+        description: Name of the dock.
+      - name: dock_id
+        description: Unique identifier of the dock.
+      - name: _INGESTED_AT
+        description: Timestamp indicating when the record was ingested.
+      - name: row_hash
+        description: Surrogate hash key generated from all business columns for change tracking and deduplication.
+
+  - name: int_foreland_areas
+    description: >
+      Filters the latest ingestion records from the foreland areas staging model,
+      deduplicates records keeping the most recent ingestion, and returns standardized foreland area attributes.
+    columns:
+      - name: forelandarea_id
+        description: Unique identifier of the foreland area.
+      - name: forelandarea_name
+        description: Name of the foreland area.
+      - name: _INGESTED_AT
+        description: Timestamp indicating when the record was ingested.
+      - name: row_hash
+        description: Surrogate hash key generated from all business columns for change tracking and deduplication.
+
+  - name: int_geo_areas
+    description: >
+      Filters the latest ingestion records from the geo areas staging model,
+      deduplicates records keeping the most recent ingestion, and returns standardized geographical area attributes.
+    columns:
+      - name: geoarea_id
+        description: Unique identifier of the geographical area.
+      - name: geoarea_name
+        description: Name of the geographical area.
+      - name: _INGESTED_AT
+        description: Timestamp indicating when the record was ingested.
+      - name: row_hash
+        description: Surrogate hash key generated from all business columns for change tracking and deduplication.
+
+  - name: int_locodes
+    description: >
+      Filters the latest ingestion records from the locodes staging model,
+      deduplicates records keeping the most recent ingestion, and returns standardized location code attributes.
+    columns:
+      - name: location_id
+        description: Unique identifier of the location.
+      - name: location_name
+        description: Name of the location.
+      - name: _INGESTED_AT
+        description: Timestamp indicating when the record was ingested.
+      - name: row_hash
+        description: Surrogate hash key generated from all business columns for change tracking and deduplication.
+
+  - name: int_port_bcn_locations
+    description: >
+      Filters the latest ingestion records from the Port of Barcelona locations staging model,
+      deduplicates records keeping the most recent ingestion, and returns standardized terminal attributes.
+    columns:
+      - name: terminal_id
+        description: Unique identifier of the terminal.
+      - name: terminal_name
+        description: Name of the terminal.
+      - name: _INGESTED_AT
+        description: Timestamp indicating when the record was ingested.
+      - name: row_hash
+        description: Surrogate hash key generated from all business columns for change tracking and deduplication.
+
+  - name: int_ports
+    description: >
+      Filters the latest ingestion records from the ports staging model,
+      deduplicates records keeping the most recent ingestion, and returns standardized port relationship attributes.
+    columns:
+      - name: location_id
+        description: Unique identifier of the port location.
+      - name: country_id
+        description: Identifier of the country associated with the port.
+      - name: geoarea_id
+        description: Identifier of the geographical area associated with the port.
+      - name: _INGESTED_AT
+        description: Timestamp indicating when the record was ingested.
+      - name: row_hash
+        description: Surrogate hash key generated from all business columns for change tracking and deduplication.
+
+  - name: int_ship_operators
+    description: >
+      Filters the latest ingestion records from the ship operators staging model,
+      deduplicates records keeping the most recent ingestion, and returns standardized shipping operator attributes.
+    columns:
+      - name: shippingcompany_id
+        description: Unique identifier of the shipping company.
+      - name: shippingcompany_name
+        description: Name of the shipping company.
+      - name: shippingcompany_lloyds
+        description: Lloyd's identifier associated with the shipping company.
+      - name: _INGESTED_AT
+        description: Timestamp indicating when the record was ingested.
+      - name: row_hash
+        description: Surrogate hash key generated from all business columns for change tracking and deduplication.
+
+  - name: int_ship_types
+    description: >
+      Filters the latest ingestion records from the ship types staging model,
+      deduplicates records keeping the most recent ingestion, and returns standardized ship type attributes.
+    columns:
+      - name: shiptype_id
+        description: Unique identifier of the ship type.
+      - name: shiptype_name
+        description: Name of the ship type.
+      - name: _INGESTED_AT
+        description: Timestamp indicating when the record was ingested.
+      - name: row_hash
+        description: Surrogate hash key generated from all business columns for change tracking and deduplication.
+
+  - name: int_subforeland_areeas
+    description: >
+      Filters the latest ingestion records from the subforeland areas staging model,
+      deduplicates records keeping the most recent ingestion, and returns standardized subforeland area attributes.
+    columns:
+      - name: forelandarea_id
+        description: Identifier of the parent foreland area.
+      - name: subforelandarea_id
+        description: Unique identifier of the subforeland area.
+      - name: subforelandarea_name
+        description: Name of the subforeland area.
+      - name: _INGESTED_AT
+        description: Timestamp indicating when the record was ingested.
+      - name: row_hash
+        description: Surrogate hash key generated from all business columns for change tracking and deduplication.

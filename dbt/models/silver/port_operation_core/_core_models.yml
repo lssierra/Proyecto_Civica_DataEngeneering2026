@@ -1,0 +1,37 @@
+models:
+  - name: arrivals_foreseen
+    description: generates from all non-metadata columns for change detection in snapshots
+    columns:
+    - name: row_hash
+      description: Surrogate key generated from all non-metadata columns for change detection
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+      - unique:
+          config:
+            severity: error
+  - name: departures_foreseen
+    description: generates from all non-metadata columns for change detection in snapshots
+    columns:
+    - name: row_hash
+      description: Surrogate key generated from all non-metadata columns for change detection
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+      - unique:
+          config:
+            severity: error
+  - name: ships_docked_today
+    description: generates from all non-metadata columns for change detection in snapshots
+    columns:
+    - name: row_hash
+      description: Surrogate key generated from all non-metadata columns for change detection
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+      - unique:
+          config:
+            severity: error

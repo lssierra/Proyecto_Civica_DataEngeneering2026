@@ -1,0 +1,50 @@
+snapshots:
+  - name: snp_arrivals_foreseen
+    tests:
+      - snapshot_no_false_versions
+  - name: snp_departures_foreseen
+    tests:
+      - snapshot_no_false_versions
+  - name: snp_dockings_active
+    tests:
+      - snapshot_no_false_versions
+  - name: snp_ships_arrivals_foreseen
+    tests:
+      - snapshot_no_false_versions
+      - no_conflicting_values:
+          test_partition_by: imo
+          test_columns:
+            - ship_name
+            - country_id
+            - country_name
+            - marinetraffic_url
+            - shiptype_id
+            - shiptype_name
+            - mmsi
+            - callsign
+            - shippingcompany_id
+            - shippingcompany_name
+  - name: snp_ships_departures_foreseen
+    tests:
+      - snapshot_no_false_versions
+      - no_conflicting_values:
+          test_partition_by: imo
+          test_columns:
+            - ship_name
+            - country_id
+            - country_name
+            - marinetraffic_url
+            - shiptype_id
+            - shiptype_name
+            - mmsi
+            - callsign
+            - _ingested_at
+  - name: snp_ships_dockings_active
+    tests:
+      - snapshot_no_false_versions
+      - no_conflicting_values:
+          test_partition_by: imo
+          test_columns:
+            - ship_name
+            - country_name
+            - _ingested_at
