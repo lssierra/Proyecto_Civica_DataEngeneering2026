@@ -1,7 +1,7 @@
 {{ config(
 materialized='incremental',
 incremental_strategy='append',
-unique_key=['imo','eta','etd']
+unique_key=['imo','etd']
 ) }}
 
 WITH d AS (
