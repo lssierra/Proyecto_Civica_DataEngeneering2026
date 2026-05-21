@@ -1,0 +1,737 @@
+version: 2
+models:
+  - name: stg_port_operations__port_bcn_arrivals_today_raw
+    description: Today's vessel arrivals at Port of Barcelona
+    columns:
+    - name: docking_year
+      description: Year of the port call
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: docking_id
+      description: Unique identifier for the port call (escala)
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: dockingstatus_desc
+      description: Human-readable description of the docking status
+    - name: ship_name
+      description: Name of the vessel
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: shiptype_name
+      description: Name/description of the vessel type
+    - name: MMSI
+      description: Maritime Mobile Service Identity number
+    - name: IMO
+      description: IMO vessel identification number
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: CALLSIGN
+      description: Radio callsign of the vessel
+    - name: ship_length
+      description: Length of the vessel in metres (eslora)
+    - name: ship_draft
+      description: Draft of the vessel in metres (calado)
+    - name: ship_width
+      description: Beam/width of the vessel in metres (manga)
+    - name: country_id
+      description: ISO country code
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: country_name
+      description: Name of the country
+    - name: shippingcompany_name
+      description: Name of the shipping company / naviera
+    - name: shippingcompany_id
+      description: Identifier of the shipping company / naviera
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: consignee
+      description: Port agent / consignee handling the call
+    - name: terminal_id
+      description: Code identifying the terminal or internal port location
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: terminal_name
+      description: Name of the terminal or internal port location
+    - name: dock_id
+      description: Code identifying the berth/moll
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: dock_modules
+      description: Modules within the berth
+    - name: dockingstatus_id
+      description: Operational status code of the port call
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: ETADIA
+      description: ETA day component (raw)
+    - name: ETAHORA
+      description: ETA hour component (raw)
+    - name: ETAUTC
+      description: ETA in UTC (raw)
+    - name: ETA
+      description: Estimated time of arrival
+    - name: ETDDIA
+      description: ETD day component (raw)
+    - name: ETDHORA
+      description: ETD hour component (raw)
+    - name: ETDUTC
+      description: ETD in UTC (raw)
+    - name: ETD
+      description: Estimated time of departure
+    - name: originport_id
+      description: UNLOCODE of the port of origin
+    - name: originport_name
+      description: Name of the port of origin
+    - name: destinationport_id
+      description: UNLOCODE of the destination port
+    - name: destinationport_name
+      description: Name of the destination port
+    - name: marinetraffic_url
+      description: MarineTraffic link for additional vessel info
+    - name: _INGESTED_AT
+      description: Timestamp when the record was ingested into the bronze layer
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: _SOURCE_URL
+      description: URL of the source API endpoint that provided this record
+  - name: stg_port_operations__port_bcn_departures_today_raw
+    description: Today's vessel departures from Port of Barcelona
+    columns:
+    - name: docking_year
+      description: Year of the port call
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: docking_id
+      description: Unique identifier for the port call (escala)
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: dockingstatus_desc
+      description: Human-readable description of the docking status
+    - name: ship_name
+      description: Name of the vessel
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: shiptype_name
+      description: Name/description of the vessel type
+    - name: MMSI
+      description: Maritime Mobile Service Identity number
+    - name: IMO
+      description: IMO vessel identification number
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: CALLSIGN
+      description: Radio callsign of the vessel
+    - name: ship_length
+      description: Length of the vessel in metres (eslora)
+    - name: ship_draft
+      description: Draft of the vessel in metres (calado)
+    - name: ship_width
+      description: Beam/width of the vessel in metres (manga)
+    - name: country_id
+      description: ISO country code
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: country_name
+      description: Name of the country
+    - name: consignee
+      description: Port agent / consignee handling the call
+    - name: terminal_id
+      description: Code identifying the terminal or internal port location
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: terminal_name
+      description: Name of the terminal or internal port location
+    - name: dock_id
+      description: Code identifying the berth/moll
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: dock_modules
+      description: Modules within the berth
+    - name: dockingstatus_id
+      description: Operational status code of the port call
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: ETADIA
+      description: ETA day component (raw)
+    - name: ETAHORA
+      description: ETA hour component (raw)
+    - name: ETAUTC
+      description: ETA in UTC (raw)
+    - name: ETA
+      description: Estimated time of arrival
+    - name: ETDDIA
+      description: ETD day component (raw)
+    - name: ETDHORA
+      description: ETD hour component (raw)
+    - name: ETDUTC
+      description: ETD in UTC (raw)
+    - name: ETD
+      description: Estimated time of departure
+    - name: originport_id
+      description: UNLOCODE of the port of origin
+    - name: originport_name
+      description: Name of the port of origin
+    - name: destinationport_id
+      description: UNLOCODE of the destination port
+    - name: destinationport_name
+      description: Name of the destination port
+    - name: marinetraffic_url
+      description: MarineTraffic link for additional vessel info
+    - name: _INGESTED_AT
+      description: Timestamp when the record was ingested into the bronze layer
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: _SOURCE_URL
+      description: URL of the source API endpoint that provided this record
+  - name: stg_port_operations__port_bcn_arrivals_ferrys_today_raw
+    description: Today's ferry arrivals at Port of Barcelona
+    columns:
+    - name: docking_year
+      description: Year of the port call
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: docking_id
+      description: Unique identifier for the port call (escala)
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: dockingstatus_desc
+      description: Human-readable description of the docking status
+    - name: ship_name
+      description: Name of the vessel
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: shiptype_name
+      description: Name/description of the vessel type
+    - name: MMSI
+      description: Maritime Mobile Service Identity number
+    - name: IMO
+      description: IMO vessel identification number
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: CALLSIGN
+      description: Radio callsign of the vessel
+    - name: ship_length
+      description: Length of the vessel in metres (eslora)
+    - name: ship_draft
+      description: Draft of the vessel in metres (calado)
+    - name: ship_width
+      description: Beam/width of the vessel in metres (manga)
+    - name: country_id
+      description: ISO country code
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: country_name
+      description: Name of the country
+    - name: consignee
+      description: Port agent / consignee handling the call
+    - name: terminal_id
+      description: Code identifying the terminal or internal port location
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: terminal_name
+      description: Name of the terminal or internal port location
+    - name: dock_id
+      description: Code identifying the berth/moll
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: dock_modules
+      description: Modules within the berth
+    - name: dockingstatus_id
+      description: Operational status code of the port call
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: ETADIA
+      description: ETA day component (raw)
+    - name: ETAHORA
+      description: ETA hour component (raw)
+    - name: ETAUTC
+      description: ETA in UTC (raw)
+    - name: ETA
+      description: Estimated time of arrival
+    - name: ETDDIA
+      description: ETD day component (raw)
+    - name: ETDHORA
+      description: ETD hour component (raw)
+    - name: ETDUTC
+      description: ETD in UTC (raw)
+    - name: ETD
+      description: Estimated time of departure
+    - name: originport_id
+      description: UNLOCODE of the port of origin
+    - name: originport_name
+      description: Name of the port of origin
+    - name: destinationport_id
+      description: UNLOCODE of the destination port
+    - name: destinationport_name
+      description: Name of the destination port
+    - name: marinetraffic_url
+      description: MarineTraffic link for additional vessel info
+    - name: _INGESTED_AT
+      description: Timestamp when the record was ingested into the bronze layer
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: _SOURCE_URL
+      description: URL of the source API endpoint that provided this record
+  - name: stg_port_operations__port_bcn_departures_ferrys_today_raw
+    description: Today's ferry departures from Port of Barcelona
+    columns:
+    - name: docking_year
+      description: Year of the port call
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: docking_id
+      description: Unique identifier for the port call (escala)
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: dockingstatus_desc
+      description: Human-readable description of the docking status
+    - name: ship_name
+      description: Name of the vessel
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: shiptype_name
+      description: Name/description of the vessel type
+    - name: MMSI
+      description: Maritime Mobile Service Identity number
+    - name: IMO
+      description: IMO vessel identification number
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: CALLSIGN
+      description: Radio callsign of the vessel
+    - name: ship_length
+      description: Length of the vessel in metres (eslora)
+    - name: ship_draft
+      description: Draft of the vessel in metres (calado)
+    - name: ship_width
+      description: Beam/width of the vessel in metres (manga)
+    - name: country_id
+      description: ISO country code
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: country_name
+      description: Name of the country
+    - name: consignee
+      description: Port agent / consignee handling the call
+    - name: terminal_id
+      description: Code identifying the terminal or internal port location
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: terminal_name
+      description: Name of the terminal or internal port location
+    - name: dock_id
+      description: Code identifying the berth/moll
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: dock_modules
+      description: Modules within the berth
+    - name: dockingstatus_id
+      description: Operational status code of the port call
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: ETADIA
+      description: ETA day component (raw)
+    - name: ETAHORA
+      description: ETA hour component (raw)
+    - name: ETAUTC
+      description: ETA in UTC (raw)
+    - name: ETA
+      description: Estimated time of arrival
+    - name: ETDDIA
+      description: ETD day component (raw)
+    - name: ETDHORA
+      description: ETD hour component (raw)
+    - name: ETDUTC
+      description: ETD in UTC (raw)
+    - name: ETD
+      description: Estimated time of departure
+    - name: originport_id
+      description: UNLOCODE of the port of origin
+    - name: originport_name
+      description: Name of the port of origin
+    - name: destinationport_id
+      description: UNLOCODE of the destination port
+    - name: destinationport_name
+      description: Name of the destination port
+    - name: marinetraffic_url
+      description: MarineTraffic link for additional vessel info
+    - name: _INGESTED_AT
+      description: Timestamp when the record was ingested into the bronze layer
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: _SOURCE_URL
+      description: URL of the source API endpoint that provided this record
+  - name: stg_port_operations__port_bcn_arrivals_7days_raw
+    description: Vessel arrivals at Port of Barcelona over the next 7 days
+    columns:
+    - name: docking_year
+      description: Year of the port call
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: docking_id
+      description: Unique identifier for the port call (escala)
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: dockingstatus_desc
+      description: Human-readable description of the docking status
+    - name: ship_name
+      description: Name of the vessel
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: shiptype_name
+      description: Name/description of the vessel type
+    - name: MMSI
+      description: Maritime Mobile Service Identity number
+    - name: IMO
+      description: IMO vessel identification number
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: CALLSIGN
+      description: Radio callsign of the vessel
+    - name: ship_length
+      description: Length of the vessel in metres (eslora)
+    - name: ship_draft
+      description: Draft of the vessel in metres (calado)
+    - name: ship_width
+      description: Beam/width of the vessel in metres (manga)
+    - name: country_id
+      description: ISO country code
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: country_name
+      description: Name of the country
+    - name: shippingcompany_name
+      description: Name of the shipping company / naviera
+    - name: shippingcompany_id
+      description: Identifier of the shipping company / naviera
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: consignee
+      description: Port agent / consignee handling the call
+    - name: terminal_id
+      description: Code identifying the terminal or internal port location
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: terminal_name
+      description: Name of the terminal or internal port location
+    - name: dock_id
+      description: Code identifying the berth/moll
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: dock_modules
+      description: Modules within the berth
+    - name: dockingstatus_id
+      description: Operational status code of the port call
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: ETADIA
+      description: ETA day component (raw)
+    - name: ETAHORA
+      description: ETA hour component (raw)
+    - name: ETAUTC
+      description: ETA in UTC (raw)
+    - name: ETA
+      description: Estimated time of arrival
+    - name: ETDDIA
+      description: ETD day component (raw)
+    - name: ETDHORA
+      description: ETD hour component (raw)
+    - name: ETDUTC
+      description: ETD in UTC (raw)
+    - name: ETD
+      description: Estimated time of departure
+    - name: originport_id
+      description: UNLOCODE of the port of origin
+    - name: originport_name
+      description: Name of the port of origin
+    - name: destinationport_id
+      description: UNLOCODE of the destination port
+    - name: destinationport_name
+      description: Name of the destination port
+    - name: marinetraffic_url
+      description: MarineTraffic link for additional vessel info
+    - name: _INGESTED_AT
+      description: Timestamp when the record was ingested into the bronze layer
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: _SOURCE_URL
+      description: URL of the source API endpoint that provided this record
+  - name: stg_port_operations__port_bcn_arrivals_7days_ops_raw
+    description: OPS (onshore power supply) data for vessel arrivals over the next 7
+      days
+    columns:
+    - name: SHIP_NAME
+      description: Name of the vessel (raw English field)
+    - name: docking_id
+      description: Unique identifier for the port call (escala)
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: country_id
+      description: ISO country code
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: country_name
+      description: Name of the country
+    - name: IMO
+      description: IMO vessel identification number
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: shippingcompany_id
+      description: Identifier of the shipping company / naviera
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: shippingcompany_name
+      description: Name of the shipping company / naviera
+    - name: CONSIGNEE
+      description: Port consignee (raw English field)
+    - name: shiptype_id
+      description: Code identifying the vessel type
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: shiptype_name
+      description: Name/description of the vessel type
+    - name: SHIP_LENGTH
+      description: Length of the vessel (raw English field)
+    - name: GT
+      description: Gross tonnage of the vessel
+    - name: dock_id
+      description: Code identifying the berth/moll
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: dock_name
+      description: Name of the berth/dock alignment
+    - name: dock_modules
+      description: Modules within the berth
+    - name: OPS_CONN_POSITION_ON_SHIP
+      description: Position of OPS connector on the vessel
+    - name: ETA
+      description: Estimated time of arrival
+    - name: ETD
+      description: Estimated time of departure
+    - name: FIRST_CONNECTION
+      description: First OPS electrical connection timestamp
+    - name: PREVIOUS_CONNECTIONS
+      description: Number of previous OPS connections
+    - name: COMPATIBILY_REQUIRED
+      description: OPS compatibility requirement flag
+    - name: EXPECTED_CONSUMPTION
+      description: Expected energy consumption for OPS
+    - name: GANGWAY_BE_USED
+      description: Flag indicating if gangway will be used
+    - name: ADDITION_1
+      description: Additional field 1 (purpose TBD)
+    - name: ADDITION_2
+      description: Additional field 2 (purpose TBD)
+    - name: ADDITION_3
+      description: Additional field 3 (purpose TBD)
+    - name: _INGESTED_AT
+      description: Timestamp when the record was ingested into the bronze layer
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: _SOURCE_URL
+      description: URL of the source API endpoint that provided this record
+  - name: stg_port_operations__port_bcn_arrivals_cruises_and_ferrys_today_raw
+    description: Today's cruise and ferry arrivals at Port of Barcelona (simplified
+      format)
+    columns:
+    - name: docking_id
+      description: Unique identifier for the port call (escala)
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: ship_name
+      description: Name of the vessel
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: dock_id
+      description: Code identifying the berth/moll
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: ETA
+      description: Estimated time of arrival
+    - name: originport_name
+      description: Name of the port of origin
+    - name: ETD
+      description: Estimated time of departure
+    - name: destinationport_name
+      description: Name of the destination port
+    - name: _INGESTED_AT
+      description: Timestamp when the record was ingested into the bronze layer
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: _SOURCE_URL
+      description: URL of the source API endpoint that provided this record
+  
+  - name: stg_port_operations__port_bcn_ships_docked_today_raw
+    description: Vessels currently docked at Port of Barcelona today
+    columns:
+    - name: ship_name
+      description: Name of the vessel
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: docking_id
+      description: Unique identifier for the port call (escala)
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: docking_seq
+      description: Sequence number of the berthing within the same port call
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: eta
+      description: Estimated time of arrival
+    - name: etd
+      description: Estimated time of departure
+    - name: imo
+      description: IMO vessel identification number
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: consignee
+      description: Port agent / consignee handling the call
+    - name: dock_id
+      description: Code identifying the berth/moll alignment
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: initial_module
+      description: Initial module within the berth
+    - name: final_module
+      description: Final module within the berth
+    - name: ship_length
+      description: Length of the vessel in metres (eslora)
+    - name: ship_width
+      description: Beam/width of the vessel in metres (manga)
+    - name: country_name
+      description: Flag country name in Catalan
+    - name: _ingested_at
+      description: Timestamp when the record was ingested into the bronze layer
+      data_tests:
+      - not_null:
+          config:
+            severity: error
+    - name: _source_url
+      description: URL of the source API endpoint that provided this record
