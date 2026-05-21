@@ -4,7 +4,6 @@ incremental_strategy='append',
 unique_key=['imo','eta','etd']
 ) }}
 
-
 WITH d AS (
 SELECT
     docking_id,
@@ -18,15 +17,15 @@ SELECT
     consignee,
     dock_modules,
     dbt_updated_at
-FROM {{ ref('snp_arrivals_foreseen') }}
+FROM {{ ref('snp_departures_foreseen') }}
 {% if is_incremental() %}
 WHERE dbt_is_deleted = 'True' 
-    AND dockingstatus_id = 'I' 
+    AND dockingstatus_id = 'F' 
     AND docking_seq = 1 
     AND dbt_updated_at > (SELECT MAX(dbt_updated_at) FROM {{ this }})
 {% else %}
 WHERE dbt_is_deleted = 'True' 
-    AND dockingstatus_id = 'I' 
+    AND dockingstatus_id = 'F' 
     AND docking_seq = 1
 {% endif %}
 ),
@@ -41,9 +40,8 @@ ship_length,
 ship_width,
 ship_draft,
 shiptype_id,
-shippingcompany_id,
 dbt_updated_at
-FROM {{ ref('snp_ships_arrivals_foreseen') }}
+FROM {{ ref('snp_ships_departures_foreseen') }}
 {% if is_incremental() %}
 WHERE dbt_is_deleted = 'True' 
     AND docking_seq = 1
@@ -71,7 +69,6 @@ s.ship_length,
 s.ship_width,
 s.ship_draft,
 s.shiptype_id,
-s.shippingcompany_id,
 
 d.dbt_updated_at
 

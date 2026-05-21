@@ -68,10 +68,6 @@ select
     COALESCE(sdf.callsign, saf.callsign) AS callsign,
     saf.shippingcompany_id,
     saf.shippingcompany_name,
-    GREATEST( coalesce(saf._ingested_at, '1900-01-01'::timestamp),
-            coalesce(sdf._ingested_at, '1900-01-01'::timestamp),
-            coalesce(sda._ingested_at, '1900-01-01'::timestamp)
-            ) AS _ingested_at,
             CASE
             WHEN saf.imo IS NOT NULL
               OR sdf.imo IS NOT NULL
