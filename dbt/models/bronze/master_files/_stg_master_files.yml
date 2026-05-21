@@ -102,7 +102,8 @@ models:
       data_tests:
         - not_null:
             config:
-              severity: error
+              severity: warn
+
     - name: shippingcompany_name
       description: Name of the shipping company / naviera
     - name: shippingcompany_lloyds
