@@ -61,6 +61,8 @@ models:
         +schema: analysis  
       meteo: #
         +schema: meteo
+      commerce:
+        +schema: commerce
 
 
 snapshots:
