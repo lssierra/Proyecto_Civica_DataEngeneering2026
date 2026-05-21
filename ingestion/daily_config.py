@@ -53,5 +53,13 @@ SOURCES = {
         "stage_prefix": "port_bcn_arrivals_cruises_and_ferrys_today",
         "encoding": "utf-8-sig",
         "separator": ",",
+    },
+
+    "port_bcn_ships_docked_today": {
+        "url": "https://opendata.portdebarcelona.cat/es/dataset/c6f3045b-8aee-476e-9ea3-7a46c453e04a/resource/7e75a37e-bafc-43fc-8b0a-02c0e051d8e5/download/portbcnvaixellsavui.csv",
+        "target_table": "PORT_BCN_SHIPS_DOCKED_TODAY_RAW",
+        "stage_prefix": "port_bcn_ships_docked_today",
+        "encoding": "utf-8-sig",
+        "separator": ",",
     }
 } 
